@@ -1,0 +1,2 @@
+module multi_java {
+}
