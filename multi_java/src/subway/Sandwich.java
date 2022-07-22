@@ -1,5 +1,5 @@
 package subway;
 
-public class Sandwich {
-
+abstract public class Sandwich {
+	abstract public String choice(String menu);
 }
