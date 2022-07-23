@@ -9,7 +9,7 @@ public class Bread extends Sandwich
 {
 	private static String menu;
 	@Override
-	public String choice(String menu)
+	public String choice(String menu)	/**부모 클래스(Sandwich)의 메소드 오버라이드*/
 	{
 		Bread.menu=menu;
 		return menu;
@@ -37,8 +37,8 @@ class ShowBread extends JFrame		/**빵 메뉴 선택 GUI 출력*/
 	{
 		f.setSize(500,700);
 		f.setLocale(null);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.getContentPane().setLayout(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);/**프레임을 닫았을 때 메모리에서 제거되도록 설정*/
+		f.getContentPane().setLayout(null);				/**프레임을 화면 가운데에 배치*/
 		
 		
 		btHoney = new JButton("Honey");
@@ -57,13 +57,13 @@ class ShowBread extends JFrame		/**빵 메뉴 선택 GUI 출력*/
 		btBefore.setBounds(10, 30, 100, 50);
 		
 		
-		f.getContentPane().add(lbBread);
+		f.getContentPane().add(lbBread);		/**프레임에서 컨텐츠 영역을 가져와서 라벨을 붙임*/
 		f.getContentPane().add(btHoney);
 		f.getContentPane().add(btMilk);
 		f.getContentPane().add(btChestnut);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
-		f.setVisible(true);
+		f.setVisible(true);			
 		
 		
 		MyEventHandler handler = new MyEventHandler();
@@ -78,10 +78,10 @@ class ShowBread extends JFrame		/**빵 메뉴 선택 GUI 출력*/
 		public void actionPerformed(ActionEvent e)
 		{
 			Object obj = e.getSource();
-			if(obj==btHoney)
+			if(obj==btHoney)	/**Honey 버튼을 클릭했을 때*/
 			{
-				Bread.setMenu("Honey");
-				f.setVisible(false);
+				Bread.setMenu("Honey");	/**빵 honey를 선택*/
+				f.setVisible(false);	/**현재 창은 보이지 않도록 설정*/
 				new ShowEgg();	/**빵 선택하면 에그 메뉴 선택 GUI 출력*/
 			}
 			else if(obj==btMilk)
@@ -96,14 +96,14 @@ class ShowBread extends JFrame		/**빵 메뉴 선택 GUI 출력*/
 				f.setVisible(false);
 				new ShowEgg();	
 			}
-			else if(obj==btBefore)
+			else if(obj==btBefore)	/**이전 버튼 클릭 했을 때*/
 			{
 				f.setVisible(false);
-				new ShowMenu();	
+				new ShowMenu();		/**이전 창 출력*/
 			}
-			else if(obj==btMain)
+			else if(obj==btMain)	/**메인 버튼 클릭 했을 때*/
 			{
-				new ShowMainPage();	
+				new ShowMainPage();	/**메인 창 출력*/
 				f.setVisible(false);
 			}
 		}
