@@ -49,25 +49,25 @@ class ShowMenu extends JFrame
 		btCheese = new JButton("치즈 토스트");
 		btMain = new JButton("메인");
 		btBefore = new JButton("이전");
-		btNext = new JButton("다음");
 		lbMenu = new JLabel("<메뉴 선택>");
 		lbMenu.setBounds(162, 70, 100, 100);
 		btEgg.setBounds(10, 170, 122, 100);	//좌우,상하,너비,높이
 		btBacon.setBounds(162, 170, 122, 100);
 		btCheese.setBounds(312, 170, 122, 100);
 		btMain.setBounds(330, 30, 100, 50);
-		btBefore.setBounds(10, 300, 100, 50);
-		btNext.setBounds(330, 300, 100, 50);
+		btBefore.setBounds(10, 30, 100, 50);
 		f.getContentPane().add(lbMenu);
 		f.getContentPane().add(btEgg);
 		f.getContentPane().add(btBacon);
 		f.getContentPane().add(btCheese);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
-		f.getContentPane().add(btNext);
 		f.setVisible(true);
 		MyEventHandler handler = new MyEventHandler();
 		btEgg.addActionListener(handler);
+		btBacon.addActionListener(handler);
+		btCheese.addActionListener(handler);
+		btMain.addActionListener(handler);
 	}
 	class MyEventHandler implements ActionListener
 	{
@@ -78,7 +78,27 @@ class ShowMenu extends JFrame
 			{
 				Menu.setMenu("Egg");
 				Menu.setPrice(2000);
+				
 				new ShowBread();	//빵 선택하면 에그 선택
+				f.setVisible(false);
+			}
+			else if(obj==btBacon)
+			{
+				Menu.setMenu("Bacon");
+				Menu.setPrice(3000);
+				f.setVisible(false);
+				new ShowBread();	
+			}
+			else if(obj==btCheese)
+			{
+				Menu.setMenu("Cheese");
+				Menu.setPrice(2500);
+				f.setVisible(false);
+				new ShowBread();	
+			}
+			else if(obj==btMain)
+			{
+				new ShowMainPage();	
 				f.setVisible(false);
 			}
 		}
