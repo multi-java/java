@@ -1,40 +1,29 @@
 package subway;
-import java.util.*; 
+import java.util.*;  
 import java.io.*;
 /** 
- * 바쁜 일상에서 건강하고 간편한 한끼 식사를 위해 만든 토스트 애플리케이션
- * 
- * 회원 정보에 대한 클래스 생성
- * 회원정보를 각각 변수로 설정 : 회원번호, 성명, 아이디, 비밀번호, 생년월일, 이메일, 연락처
- * 회원정보를 캡슐화하여 private 설정
- * 로그인과정에 대한 join()메소드 작성 
- * 로그인절차에 대한 loginCheck()메소드 작성
- * - id, password가 맞으면 환영메시지
- * - 잘못된 아이디나 비밀번호에 대해 다시 확인하는 절차
- * 메인메소드에서 위의 메소드 호출
  * 
  * 작성자: 김보미
  * 작성일: 22-07-20
  * 버전: 1.1
  */
-
+// 객체
 public class Customer {
 	
-	//회원정보
-	int userNum;//회원번호
-	String name;//성명
-	String id;//아이디
-	String password;//비밀번호
-	String birthdate;//생년월일
-	String email;//이메일
-	String phone;//연락처
 	
-	//캡슐화: getter
+	//회원정보
+	private int userNum, birthdate;//회원번호
+	private String name, id, password, phone, email  ;//이름, 생년월일, 아이디, 비밀번호, 연락처, 이메일
+		
+	
 	public int getNum() {
 		return userNum;
 	}
 	public String getName() {
 		return name;
+	}
+	public int getBirthday() {
+		return birthdate;
 	}
 	public String getId() {
 		return id;
@@ -42,21 +31,21 @@ public class Customer {
 	public String getPassword() {
 		return password;
 	}
-	public String getBirthday() {
-		return birthdate;
+	public String getPhone() {
+		return phone;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public String getPhone() {
-		return phone;
-	}
-	//캡슐화: setter
+
 	public void setNum(int userNum) {
 		this.userNum = userNum;
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	public void setBirthday(int birthdate) {
+		this.birthdate = birthdate;
 	}
 	public void setId(String id) {
 		this.id = id;
@@ -64,54 +53,66 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public void setBirthday(String birthdate) {
-		this.birthdate = birthdate;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public void setPhone(String phone) {
+	
+	//기본생성자에 매개변수 기본값넣어줌
+	public Customer() {
+		this(0001,"정성훈", 880808, "hello123","world123", "01051236987","hello@good.com");
+	}
+	//매개변수 받는 생성자
+	public Customer (int userNum, String name, int birthdate, String id, String password, String phone, String email) {
+		this.userNum = userNum;
+		this.name=name;
+		this.birthdate = birthdate;
+		this.id = id;
+		this.password = password;
 		this.phone = phone;
-	}
-
-	HashMap<String, String> map=new HashMap<>();
-	//로그인 메소드
-	public void join(){ 
-		map.put("hello123", "world123");
-		map.put("momentum07", "power789");
-		map.put("yoo0101", "gigi2580");
-		System.out.println(" 로그인 해주십시오. ");
+		this.email = email;
 	}
 	
-	//로그인 확인 메소드
-	public void loginCheck() {
-		Console console=System.console(); 
-		while(true) {
-			System.out.print("아이디: ");
-			String userid=console.readLine();
-			System.out.print("비밀번호: ");
-			char[] pwd=console.readPassword(); 
-			if (!map.containsKey(userid)) {
-				System.out.println("아이디를 다시 확인해주십시오.");
-			} else {
-				String realPwd=map.get(userid);
-				if (realPwd.equals(new String(pwd))) {
-					System.out.println(userid + "님 환영합니다.");
-					break;// 
-				} else {
-					System.out.println("비밀번호를 다시 확인해주십시오.");
-					continue;
-				}
-			}
-			}
+	//고객정보를 출력하는 메소드: 회원 정보 조회
+	public void showInfo() {
+		System.out.println("회원번호 : "+userNum);
+		System.out.println("이   름 : "+name);
+		System.out.println("아 이 디 : "+id);
+		System.out.println("비밀번호 : "+password);
+		System.out.println("생년월일 : "+birthdate);
+		System.out.println("연 락 처 : "+phone);
+		System.out.println("이 메 일 : "+email);
 	}
+			
 	
-	//메소드 호출
-	public static void main(String[] args) {
-		Customer c=new Customer();
-		c.join();
-		c.loginCheck(); 
-
-	}
-
+			
+	/*고객 정보를 입력받는 메소드: 회원 정보 수정*/
+	public void inputInfo() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("회원번호를 입력하십시오.=>");
+		userNum=sc.nextInt();
+				
+		System.out.println("이름을 입력하십시오.=>");
+		name=sc.next();
+				
+		System.out.println("아이디를 입력하십시오.=>");
+		id=sc.next();
+				
+		System.out.println("비밀번호를 입력하십시오.=>");
+		password=sc.next();
+				
+		System.out.println("생년월일을 입력하십시오.=>");
+		birthdate=sc.nextInt();
+				
+				
+		System.out.println("연락처를 입력하십시오.=>");
+		phone=sc.next();
+				
+		System.out.println("이메일을 입력하십시오.=>");
+		email=sc.next();
+				
+			}
+	
 }
