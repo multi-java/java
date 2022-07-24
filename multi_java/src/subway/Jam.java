@@ -132,6 +132,12 @@ class ShowJam extends JFrame
 			"\n\n";
 			ShowMainPage.setOrderList(order);
 			System.out.println(ShowMainPage.getOrderList().size());
+			System.out.println(ShowMainPage.getOrderList().get(0));
+			/*
+			 * System.out.println(ShowMainPage.getOrderList().get(1));
+			 * System.out.println(ShowMainPage.getOrderList().get(2));
+			 * System.out.println(ShowMainPage.getOrderList().get(3));
+			 */
 		}
 	}
 }
