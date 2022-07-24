@@ -16,14 +16,7 @@ public class test {
 	
 	
 	
-		if (order.size()<5){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
-			//order.add();
-		}
-
-		else if (order.size()>4){
-			System.out.println("즐겨찾기는 4개까지만 저장할 수 있습니다"); //에러창띄어주기
-
-		}
+		
 	}
 
 }
