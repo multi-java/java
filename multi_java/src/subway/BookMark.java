@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.awt.Container;
 
 
-public class BookMark extends JFrame {/**JFrame 상속*/
+
+public class BookMark extends JFrame {//JFrame 상속
 	JButton Drop1, Drop2, Drop3, Drop4; //버튼 선언
 	
 	public BookMark(){
@@ -23,8 +24,7 @@ public class BookMark extends JFrame {/**JFrame 상속*/
 	container.setLayout(null); //container의 배치관리자 제거
 	
 	
-	
-    ////////////제목 (라벨)
+	/**1. 즐겨찾기를 */
 	JLabel label = new JLabel("::즐겨찾기 PAGE::");
 	label.setLocation(200,50); // 제목 위치설정
 	label.setSize(300,100); // 제목 사이즈설정
