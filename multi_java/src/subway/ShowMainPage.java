@@ -7,7 +7,7 @@ public class ShowMainPage extends JFrame
 {
 	JFrame f = new JFrame();
 	JButton btMenu;
-	private static ArrayList<String> orderList = new ArrayList<String>();/**주문한 내역을 저장하기 위한 ArrayList*/
+	private static ArrayList<String>  orderList = new ArrayList<String>();/**주문한 내역을 저장하기 위한 ArrayList*/
 	private static int total_price=0;/**주문한 메뉴의 가격을 모두 합산한 가격*/
 	public static int getTotal_price() {
 		return total_price;

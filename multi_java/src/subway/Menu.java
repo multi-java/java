@@ -1,5 +1,7 @@
 package subway;
 import javax.swing.*;
+
+import java.awt.Image;
 import java.awt.event.*;
 
 
@@ -37,6 +39,7 @@ class ShowMenu extends JFrame		/**메뉴 선택 GUI 출력*/
 	JPanel p = new JPanel();
 	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext;
 	JLabel lbMenu;
+	ImageIcon img,img2,img3;
 	
 	public ShowMenu()
 	{
@@ -45,9 +48,14 @@ class ShowMenu extends JFrame		/**메뉴 선택 GUI 출력*/
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);/**프레임을 닫았을 때 메모리에서 제거되도록 설정*/
 		f.getContentPane().setLayout(null);				/**프레임을 화면 가운데에 배치*/
 		
-		
+		img = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Bacon_Toast.jpg");
+		img2 = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Cheeses_Toast.jpg");
+		img3 = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Egg_Toast.jpg");
+		Image img33 = img.getImage();
+		Image img44 = img33.getScaledInstance(100, 50, Image.SCALE_SMOOTH);
+		ImageIcon i = new ImageIcon(img44);
 		btEgg = new JButton("에그 토스트");
-		btBacon = new JButton("베이컨 토스트");
+		btBacon = new JButton("베이컨 토스트",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Bacon_Toast_2.png"));
 		btCheese = new JButton("치즈 토스트");
 		btMain = new JButton("메인");
 		btBefore = new JButton("이전");
@@ -56,7 +64,10 @@ class ShowMenu extends JFrame		/**메뉴 선택 GUI 출력*/
 		
 		lbMenu.setBounds(162, 70, 100, 100);
 		btEgg.setBounds(10, 170, 122, 100);		/**setBounds -> 좌우,상하,너비,높이 순서*/
+		btEgg.setIcon(i);
 		btBacon.setBounds(162, 170, 122, 100);
+		btBacon.setVerticalTextPosition(JButton.BOTTOM);
+		btBacon.setHorizontalTextPosition(JButton.CENTER);
 		btCheese.setBounds(312, 170, 122, 100);
 		btMain.setBounds(330, 30, 100, 50);
 		btBefore.setBounds(10, 30, 100, 50);
