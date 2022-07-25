@@ -44,6 +44,7 @@ public class Order extends JFrame
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btSave);
 		f.getContentPane().add(scrollPane);
+
 	    ta.setEditable(false);						/**Textarea에 값 입력 못하게 설정*/
 		f.setVisible(true);
 		

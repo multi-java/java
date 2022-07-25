@@ -1,6 +1,7 @@
 package subway;
 import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.*;
 
@@ -30,7 +31,7 @@ class ShowBread extends JFrame		/**빵 메뉴 선택 GUI 출력*/
 {
 	JFrame f = new JFrame();
 	JButton btHoney,btMilk,btChestnut,btMain,btBefore,btNext;
-	JLabel lbBread;
+	JLabel Lblogo,Lbname,Lbline,lbMenu,lbBread;
 	
 	
 	public ShowBread()
@@ -40,30 +41,50 @@ class ShowBread extends JFrame		/**빵 메뉴 선택 GUI 출력*/
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);/**프레임을 닫았을 때 메모리에서 제거되도록 설정*/
 		f.getContentPane().setLayout(null);				/**프레임을 화면 가운데에 배치*/
 		
-		
-		btHoney = new JButton("Honey");
-		btMilk = new JButton("Milk");
-		btChestnut = new JButton("Chestnut");
+		Lblogo = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\까페로고.jpg")); //메뉴선택 라벨 생성
+		Lbname = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\주문하기.jpg")); //메뉴선택 라벨 생성
+		Lbline = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\선.png")); //메뉴선택 라벨 생성
+		btHoney = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\꿀빵.jpg"));
+		btMilk = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\우유빵.jpg"));
+		btChestnut = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\밤빵.jpg"));
 		btMain = new JButton("메인");
-		btBefore = new JButton("이전");
-		lbBread = new JLabel("<빵 선택>");
+		btBefore = new JButton("",(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\돌아가기.png")));
+		lbBread = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\빵을 골라주세요.jpg"));
+
+	
+		Lblogo.setBounds(5, 5, 100, 100); 
+		Lbname.setBounds(170, 10, 150, 100); 
+		Lbline.setBounds(0, 100, 500, 50); 
+		lbBread.setBounds(100, 150, 250,100);
+		btHoney.setBounds(312, 250, 130, 130);		/**setBounds -> 좌우,상하,너비,높이 순서*/
+		btMilk.setBounds(10, 250, 130, 130);
+		btChestnut.setBounds(162, 250, 122, 130);
+		btMain.setBounds(330, 530, 100, 50);
+		btBefore.setBounds(380, 10, 100, 100);
 		
+
+		btHoney.setBackground(Color.white); //메뉴사진(bt) 테두리 없애기
+		btHoney.setBorderPainted(false);
+		btMilk.setBackground(Color.white);
+		btMilk.setBorderPainted(false);
+		btChestnut.setBackground(Color.white);
+		btChestnut.setBorderPainted(false);
+		btBefore.setBackground(Color.white);
+		btBefore.setBorderPainted(false);
+
 		
-		btHoney.setBounds(10, 170, 122, 100);		/**setBounds -> 좌우,상하,너비,높이 순서*/
-		lbBread.setBounds(162, 70, 100, 100);
-		btMilk.setBounds(162, 170, 122, 100);
-		btChestnut.setBounds(312, 170, 122, 100);
-		btMain.setBounds(330, 30, 100, 50);
-		btBefore.setBounds(10, 30, 100, 50);
-		
-		
+		f.getContentPane().add(Lbline);		
+		f.getContentPane().add(Lbname);		
+		f.getContentPane().add(Lblogo);	
 		f.getContentPane().add(lbBread);		/**프레임에서 컨텐츠 영역을 가져와서 라벨을 붙임*/
 		f.getContentPane().add(btHoney);
 		f.getContentPane().add(btMilk);
 		f.getContentPane().add(btChestnut);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
+		f.getContentPane().setBackground(Color.white);
 		f.setVisible(true);			
+				
 		
 		
 		MyEventHandler handler = new MyEventHandler();
