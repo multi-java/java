@@ -6,21 +6,20 @@ package subway;
  * 작성일: 22-07-23
  * 버전: 1.1
  */
-import javax.swing.*;
-
+import javax.swing.*; 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Gui03_JoinMembership extends JFrame {
-	JFrame f = new JFrame();
+	JFrame f = new JFrame("::회원가입::");
 	JPanel p,pN,pC,pS; 
 	JButton bJoin,bBack; 
 	JTextField tId, tPwd, tName,tPhone, tBirthdate; 
 	JLabel laId, laPwd, laName,laPhone, laBirthdate;
 	JLabel laText;
 	Icon iconBack;
+	ArrayList<Customer> customers = new ArrayList<Customer>();//ArrayList에 고객정보 저장하기 위해
 	
 	//JTabbedPane tabP; //지우기
 	
@@ -35,7 +34,8 @@ public class Gui03_JoinMembership extends JFrame {
 			super(":: Toast House App v1.1 ");
 			
 			/**1.전체 패널(p)를  BorderLayout구성*/
-			p=new JPanel(new BorderLayout()); 
+			p=new JPanel(new BorderLayout());
+			f.add(p);
 			p.setBackground(Color.white);
 			p.add(pC=new JPanel(),"Center");
 			pC.setBackground(Color.white);
@@ -60,7 +60,7 @@ public class Gui03_JoinMembership extends JFrame {
 			laName=new JLabel("이름");
 			laBirthdate=new JLabel("생년월일");
 			laPhone=new JLabel("연락처");
-			//laEmaie=new JLabel("이메일");
+	
 					
 			tId=new JTextField(15);
 			tId.setBackground(Color.white);
@@ -72,8 +72,7 @@ public class Gui03_JoinMembership extends JFrame {
 			tBirthdate.setBackground(Color.white);
 			tPhone=new JTextField(15);
 			tPhone.setBackground(Color.white);
-			//tEmaie=new JTextField(20);
-			//tEmaie.setBackground(Color.white);
+		
 				
 			pC.add(laId);
 			pC.add(tId);
@@ -85,10 +84,9 @@ public class Gui03_JoinMembership extends JFrame {
 			pC.add(tBirthdate);
 			pC.add(laPhone);
 			pC.add(tPhone);
-			//pC.add(laEmaie);
-			//pC.add(tEmaie);
 			
-			/**4.남쪽의 pS에 회원가입, 뒤로 버튼*/
+			
+			/**4.남쪽의 pS에 회원가입, 뒤로 버튼*/ //이전버튼을 제목옆에 위로 올리기
 			bJoin=new JButton(" 회원가입 ");//회원가입 버튼
 			bJoin.setBackground(Color.white);
 			pS.add(bJoin);
@@ -109,39 +107,39 @@ public class Gui03_JoinMembership extends JFrame {
 			bBack.addActionListener(handler);
 			bJoin.addActionListener(handler);
 			
+			/**5.전체 프레임 f에 모든 패널을 배치. 
+			 * 크기설정, 시각화 구현 및 창닫기 처리*/
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			f.add(p);
-			f.add(pN);
-			f.add(pC);
-			f.add(pS);
-			f.setVisible(true);
-			f.setSize(500,700);
 			
+			//f.add(pN);
+			//f.add(pC);
+			//f.add(pS);
+			//f.setVisible(true);
+			//f.setSize(500,700);
+			//버튼누를때 나올것이니
 		}
 		
-		/**5.회원가입 
+		/**6.이벤트처리로 회원가입 절차
 		 *  뒤로 버튼을 누르면 로그인화면으로 이동
 		 *  
 		 * 회원가입 버튼을 누르면 고객정보 저장해서 회원가입하고, 메인화면으로 이동
-		 * -중복x 사용자정의예외+메시지 "이미 가입한 고객님이십니다"
-		 * -빈칸있으면 NullPointerException+메시지"고객님의 정보를 입력해주십시오"
-		 * -생년월일은 6자리까지만. 7자리쓰면 사용자정의예외+메시지"생년월일은 6자리로 입력해주십시오."
+		 * -중복x, 사용자정의예외+메시지 "이미 가입한 고객님이십니다"
+		 * -빈칸있으면, NullPointerException+메시지"고객님의 정보를 입력해주십시오"
+		 * -생년월일은 6자리로. 6자리 초과하면(7자리부터), 6자리보다 부족하면. 사용자정의예외+메시지"생년월일은 6자리로 입력해주십시오."
 		 * */
 		
 		/*해결해야할 것
-		 *1. 화면창 안뜸 에러생김, JTabbedPane 지운 후로 셋 다 화면이 회색창만 떴음!!
-		 *2. 해시코드 없애려면 오버라이드? day11 ObjectTest 
-		 *3. 회원가입버튼의 이벤트 처리
-		 * 
+		 *1. 회원가입버튼의 이벤트 처리-에러해결, 생년월일은 숫자로 입력해야함 글자면 에러 예외처리 
 		 */
 		
 		
+		
 		class MyEventHandler implements ActionListener{
-			ArrayList<Customer> customers = new ArrayList<Customer>();//ArrayList에 고객정보 저장하기 위해
+			
 			public void actionPerformed(ActionEvent e) {
 				Object obj=e.getSource();
 				if(obj==bBack) {//뒤로 버튼
-					 System.out.println("ddd");
+					// System.out.println("ddd");
 					new Gui01_Login();
 					p.setVisible(false);
 				}
@@ -152,45 +150,42 @@ public class Gui03_JoinMembership extends JFrame {
 					String name=tName.getText();
 					String phone=tPhone.getText();
 					int birthdate=Integer.parseInt(tBirthdate.getText());
-			
-					customers.add(new Customer(name,id,pwd,phone,birthdate));//새로운 정보 저장.
 					
-					System.out.println(customers.get(0));
-					//저장했는지 확인하려는데 해시코드로 값이 나옴 문자로 나오게 바꿔야함!
-
-					/*
-					try {
-					//빈칸 있는 경우 
-					if (id.trim().isEmpty()||pwd.trim().isEmpty()||name.trim().isEmpty()||phone.trim()||birthdate.trim()){
-					//((id=null)||(pwd=null)||(name=null)||(phone=null)||(birthdate=null))
-					throw NullPointerException ("고객님의 정보를 입력해주십시오");
-					}
-					
-					//생년월일이 6자리 초과인경우
-					else if  birthdate>6 
-					throw new NotSupportedNameException("생년월일은 6자리로 입력해주십시오.");
-					
-					//중복인 경우
-					else if (id.equals(기존 아이디)){
-					throw new NotSupportedNameException("이미 가입한 고객님이십니다.");
-					
-					else{ //회원가입버튼누르면 고객정보 저장해서 회원가입하고 메인화면으로 이동
-					customers.add(new Customer(name,id,pwd,phone,birthdate));
-					f.setVisible(false);
-					new Gui02_MainHome();	
-					
-						}catch(NullPointerException  e) {
+					try {//빈칸 있는 경우 
+						if((id=null)||(pwd=null)||(name=null)||(phone=null)||(birthdate=null)){
+						//(id.trim().isEmpty()||pwd.trim().isEmpty()||name.trim().isEmpty()||phone.trim()||birthdate.trim()){
+						//((id=null)||(pwd=null)||(name=null)||(phone=null)||(birthdate=null)){
+						throw NullPointerException ("고객님의 정보를 입력해주십시오");
+						}else if((id==customers.get(0).getId())&&(pwd==customers.get(0).getPassword())&&(name==customers.get(0).getName())&&(phone==customers.get(0).getPhone())&&(birthdate==customers.get(0).getBirthdate())){
+							//중복인 경우
+							throw NotSupportedNameException ("이미 가입한 고객님이십니다");
+						}else {//회원가입버튼누르면 고객정보 저장해서 회원가입하고 메인화면으로 이동
+							customers.add(new Customer(name,id,pwd,phone,birthdate));
+							//System.out.println(customers.get(0).getName()); 정보 확인
+							f.setVisible(false);
+							new Gui02_MainHome();	
+						}
+					}catch(NullPointerException  e) {
 						String msg=e.getMessage();
 						JOptionPane.showMessageDialog(p,msg);
 					}catch(NotSupportedNameException  e) {
 						String msg=e.getMessage();
 						JOptionPane.showMessageDialog(p,msg);
-					}*/
+					}
+					
+					//생년월일은 숫자로 입력해야함 글자면 에러 예외처리 
+						
 					
 				}//if
 					
 					
 			}// 보이드
 		}//핸들러 클래스
+		
+		public static void main(String[] args) {
+			Gui03_JoinMembership my=new Gui03_JoinMembership();
+			my.f.setSize(500,700);
+			my.f.setVisible(true);
+		}
 
 }//클래스

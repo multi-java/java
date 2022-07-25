@@ -1,18 +1,16 @@
 package subway;
 /** 
  * 
- * 메인화면 : 로그인 후 다양한 메뉴를 선택할 수 있는 화면 
+ * 메인화면 : 로그인 후 다양한 메뉴를 선택할 수 있는 화면
  * 
  * 작성자: 김보미
  * 작성일: 22-07-23
  * 버전: 1.1
  */
-import javax.swing.*;
-
-import subway.Gui01_Login.MyEventHandler;
-
+import javax.swing.*; 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 
 public class Gui02_MainHome extends JFrame{
@@ -22,6 +20,8 @@ public class Gui02_MainHome extends JFrame{
 	JLabel laIcon, laWelcome;
 	Icon iconMenu, iconMymenu,iconMypage, iconLogout, iconLogo;
 	//JTabbedPane tabP; //지우기
+	
+	ArrayList<Customer> customers;
 	
 	@Override
 	public Insets getInsets () { 
@@ -88,26 +88,35 @@ public class Gui02_MainHome extends JFrame{
 		bbMymenu.addActionListener(handler);
 		bbLogout.addActionListener(handler);
 		
+		/**4.전체 프레임 f에 모든 패널을 배치. 
+		 * 크기설정, 시각화 구현 및 창닫기 처리*/
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.add(p);
-		f.add(pS);
-		f.add(pC);
-		f.add(pC_b);
-		f.setVisible(true);
-		f.setSize(500,700);
+		//f.add(pS);
+		//f.add(pC);
+		//f.add(pC_b);
+		////f.setVisible(true);
+		//f.setSize(500,700);//버튼누를때 나와서
 
 		}//생성자
 	
-	/**4.메인화면에서 메뉴 이동 절차
+	/**5.이벤트처리로 메인화면에서 메뉴 이동 절차
 	 * 로그아웃 버튼을 누르면 로그아웃하고 로그인화면으로 이동.
 	 * 메뉴선택 버튼을 누르면 메뉴선택으로 이동
 	 * 나만의 메뉴 버튼을 누르면 나만의 메뉴로 이동
 	 * 마이페이지 버튼을 누르면 마이페이지로 이동
 	 * */
+	
 	/*해결해야할 것
 	 * 1. 화면창 안뜸 에러생김, JTabbedPane 지운 후로 셋 다 화면이 회색창만 떴음!!
-	 * 로그아웃과정의 이벤트처리
+	 * 2.로그아웃과정의 이벤트처리
 	 */
+	
+	public void setCustomers(ArrayList<Customer> customers) {
+		
+		this.customers= customers;
+		
+	}
 	
 	
 	class MyEventHandler implements ActionListener{
@@ -135,4 +144,6 @@ public class Gui02_MainHome extends JFrame{
 			
 		}// 보이드
 	}//핸들러 클래스
+
+	
 }//클래스

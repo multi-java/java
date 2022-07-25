@@ -1,12 +1,10 @@
 package subway;
 
-import javax.swing.*;
+import javax.swing.*; 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.Console;
-import java.util.HashMap;
 
-import subway.Login;
+
 /** 
  *  환경을 고려해 스마트팜을 통한 무농약 식재료로 만든 토스트 판매 애플리케이션
  * 
@@ -27,6 +25,8 @@ public class Gui01_Login  extends JFrame {
 	JLabel laIcon;
 	Icon iconLogo;
 	
+	Gui02_MainHome mainHome;
+	Gui03_JoinMembership join;
 	@Override
 	public Insets getInsets () {
 		Insets in=new  Insets(10,10,10,10);
@@ -74,35 +74,27 @@ public class Gui01_Login  extends JFrame {
 		pC.add(bJoin);
 		pC.add(bLogin);
 		
+		mainHome=new Gui02_MainHome();
+		join=new Gui03_JoinMembership();
+		mainHome.setCustomers(join.customers);
 		
 		MyEventHandler handler = new MyEventHandler();
 		bLogin.addActionListener(handler);
 		bJoin.addActionListener(handler);
 				
+		/**4.전체 프레임 f에 모든 패널을 배치. 
+		 * 크기설정, 시각화 구현 및 창닫기 처리*/
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.add(p);
-		f.add(pN);
-		f.add(pC);
+		//f.add(pN);
+		//f.add(pC);
 		f.setVisible(true);
 		f.setSize(500,700);
 		
 	}//
 	
-	/*로그인 절차 HashmapTest참고
-	 * 
-	 * public class Login {
-	HashMap<String, String> map=new HashMap<>();
-	public void members(){ //로그인 메소드
-		map.put("hello123", "world123");
-		map.put("momentum07", "power789");
-		map.put("yoo0101", "gigi2580");
-		System.out.println(" 로그인 해주십시오. ");
-	}////저장된 아이디들
-	
-	
-	나는 ArrayList저장 day10 ArrayList참고
-	
-	
+	/*로그인 절차 HashmapTest참고//나는 ArrayList저장 day10 ArrayList참고
+
 	public void loginCheck() { //로그인 확인 메소드
 		Console console=System.console(); 
 		while(true) {
@@ -127,46 +119,54 @@ public class Gui01_Login  extends JFrame {
 	 
 	
 	
-	/**4.로그인 확인 절차
-	 * 회원가입 버튼을 누르면 회원가입 페이지 전환.
+	/**5.이벤트처리로 로그인 확인 절차 
+	 * 회원가입 버튼을 누르면 회원가입 페이지 이동.
 	 * 
 	 * 로그인 버튼을 누르거나 엔터쳤을 때, 
 	 * -아이디 틀릴경우, 사용자정의예외+메시지 "아이디가 잘못 되었습니다."
 	 * -아이디 맞을 경우, 비번 틀릴 때 사용자정의예외+메시지 "비밀번호가 잘못 되었습니다."
-	 * -			  비번 맞을 때 로그인 후 메인화면으로 전환.
+	 * -			  비번 맞을 때 로그인 후 메인화면으로 이동.
 	 * */
 	/*해결해야할 것
-	 * 1. 화면창 안뜸 에러생김, JTabbedPane 지운 후로 셋 다 화면이 회색창만 떴음!!
-	 * 
-	 * 2. 로그인버튼의 이벤트처리
+	 * 1. 로그인버튼의 이벤트처리
 	 */
+	
+	public static void main(String[] args) {
+		Gui01_Login my=new Gui01_Login();
+	}
 	
 	class MyEventHandler implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			Object obj=e.getSource();
-			if(obj==bJoin) {	//회원가입 버튼누르면 이동
-				f.setVisible(false);
-				new Gui03_JoinMembership();
-				
+			if(obj==bJoin) {//회원가입 버튼누르면 이동
+				//System.out.println("bjoin");
+				//setTitle("JOIN");
+				join.f.setLocation(300,300);
+				join.f.setSize(500,700);
+				join.f.setVisible(false);
+			//	new Gui03_JoinMembership();
 			}
-			
-			if(obj==bJoin || (obj==textId && obj==textPwd)) {//로그인 버튼 누르거나 엔터치면
+			if(obj==bLogin || (obj==textId && obj==textPwd)) {//로그인 버튼 누르거나 엔터치면
 				String id=textId.getText();
 				String pwd=textPwd.getText(); //입력한 id,pwd
-				/*try {
-					if(id!=){//아이디가 틀릴때 메시지  equals??
-						
+				
+				
+				/*ArrayList에 저장된 정보를 꺼내서 입력값과 비교해야함
+				 * getId, getPassword
+				 * customers.get(0).getName()
+				 * 
+				 * try {
+					if(id!=getId){						
 						throw new NotSupportedNameException("아이디가 잘못 되었습니다.");
-					textId.setText("");// 이름칸이 지워지고 포커스.
+					textId.setText("");
 					textPwd.setText("");
 					textId.requestFocus();
-					
-				}else if(id==) {
-						if(id.equals(기존아이디)&&pwd!=)//아이디 맞고 비번은 틀림
+					}else if(id==getId) {
+						if((id==getId)&&(pwd!=getPassword))//아이디 맞고 비번은 틀림id.
 						throw new NotSupportedNameException("비밀번호가 잘못 되었습니다.");
 						textId.setText("");
 						textPwd.setText("");
-						textId.requestFocus();//
+						textId.requestFocus();
 						
 				}else {			//아이디 맞고 비번 맞으면 다음페이지 메인 페이지 넘어감	
 						
@@ -180,6 +180,9 @@ public class Gui01_Login  extends JFrame {
 					JOptionPane.showMessageDialog(p,msg);
 				}*/
 				
+				mainHome.f.setSize(500,700);
+				mainHome.f.setVisible(true);//메인홈 보여주
+				f.setVisible(false);//로그인 프레임 감추
 				
 			}//if
 			
