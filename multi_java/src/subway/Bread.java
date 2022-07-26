@@ -1,6 +1,7 @@
 package subway;
 import javax.swing.*;
 
+import java.awt.Color;
 import java.awt.Frame;
 import java.awt.event.*;
 
@@ -63,6 +64,7 @@ class ShowBread extends JFrame		/**빵 메뉴 선택 GUI 출력*/
 		f.getContentPane().add(btChestnut);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
+		f.getContentPane().setBackground(Color.WHITE);
 		f.setVisible(true);			
 		
 		

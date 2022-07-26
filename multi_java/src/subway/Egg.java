@@ -1,5 +1,7 @@
 package subway;
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 
 public class Egg extends Sandwich
@@ -65,6 +67,7 @@ class ShowEgg extends JFrame
 		f.getContentPane().add(btHam);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
+		f.getContentPane().setBackground(Color.WHITE);
 		f.setVisible(true);
 		
 		

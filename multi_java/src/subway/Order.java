@@ -1,5 +1,7 @@
 package subway;
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 import java.io.*;
 import java.io.FileNotFoundException;
@@ -37,7 +39,6 @@ public class Order extends JFrame
 		scrollPane.setBounds(10, 30, 200, 300);
 		
 		
-		
 		ta.append(orderList+"총 결제 금액 : "+ShowMainPage.getTotal_price());/**TextArea에 출력할 내용 저장*/
 		count++;
 		
@@ -45,6 +46,7 @@ public class Order extends JFrame
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btSave);
 		f.getContentPane().add(scrollPane);
+		f.getContentPane().setBackground(Color.WHITE);
 	    ta.setEditable(false);						/**Textarea에 값 입력 못하게 설정*/
 		f.setVisible(true);
 		
@@ -69,7 +71,7 @@ public class Order extends JFrame
 		        {
 		            try 
 		            {
-		                printWriter = new PrintWriter("C:\\Users\\park\\git\\java\\order_List.txt");/**파일 저장 경로를 지정*/
+		                printWriter = new PrintWriter("C:\\Users\\하은\\git\\java\\order_List.txt");/**파일 저장 경로를 지정*/
 		                
 		                if(printWriter.checkError()==false)	/**파일 저장하는 도중에 에러가 발생하는지 체크, 에러가 발생하면 true 리턴*/
 				            JOptionPane.showMessageDialog(null,"저장이 완료되었습니다 ! ","Success",JOptionPane.INFORMATION_MESSAGE);

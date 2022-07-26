@@ -1,5 +1,7 @@
 package subway;
 import javax.swing.*;
+
+import java.awt.Color;
 import java.awt.event.*;
 
 
@@ -61,6 +63,7 @@ class ShowJam extends JFrame
 		f.getContentPane().add(btApple);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
+		f.getContentPane().setBackground(Color.WHITE);
 		f.setVisible(true);
 		
 		
@@ -138,6 +141,7 @@ class ShowJam extends JFrame
 			 * System.out.println(ShowMainPage.getOrderList().get(2));
 			 * System.out.println(ShowMainPage.getOrderList().get(3));
 			 */
+			System.out.println("size : "+ShowMainPage.getOrderList().size());
 		}
 	}
 }
