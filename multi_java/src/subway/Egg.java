@@ -35,7 +35,7 @@ class ShowEgg extends JFrame
 {
 	JFrame f = new JFrame();
 	JButton btCheese,btEgg,btHam,btMain,btBefore,btNext;
-	JLabel lbMenu;
+	JLabel Lblogo,Lbname,Lbline,lbMenu;
 	
 	public ShowEgg()
 	{
@@ -45,22 +45,41 @@ class ShowEgg extends JFrame
 		f.getContentPane().setLayout(null);
 		
 		
-		btCheese = new JButton("Cheese");
-		btEgg = new JButton("Egg");
-		btHam = new JButton("Ham");
-		btMain = new JButton("메인");
-		btBefore = new JButton("이전");
-		lbMenu = new JLabel("<토핑 선택>");
+		Lblogo = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\까페로고.jpg")); //메뉴선택 라벨 생성
+		Lbname = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\주문하기.jpg")); //메뉴선택 라벨 생성
+		Lbline = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\선.png")); //메뉴선택 라벨 생성
+		btCheese = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\치즈.jpg"));
+		btEgg = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\계란.jpg"));
+		btHam = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\햄.jpg"));
+		btMain = new JButton("",new ImageIcon(""));
+		btBefore = new JButton("",(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\돌아가기.png")));
+		lbMenu = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\토핑을 골라주세요.jpg"));
 		
 		
-		lbMenu.setBounds(162, 70, 100, 100);
-		btCheese.setBounds(10, 170, 122, 100);			//좌우,상하,너비,높이
-		btEgg.setBounds(162, 170, 122, 100);
-		btHam.setBounds(312, 170, 122, 100);
-		btMain.setBounds(330, 30, 100, 50);
-		btBefore.setBounds(10, 30, 100, 50);
+		Lblogo.setBounds(5, 5, 100, 100); 
+		Lbname.setBounds(170, 10, 150, 100); 
+		Lbline.setBounds(0, 100, 500, 50); 
+		lbMenu.setBounds(100, 150, 250, 100);  //좌우,상하,너비,높이
+		btCheese.setBounds(312, 250, 130, 130);			
+		btEgg.setBounds(10, 250, 130, 130);
+		btHam.setBounds(162, 250, 130, 130);
+		btMain.setBounds(330, 530, 100, 50);
+		btBefore.setBounds(380, 10, 100, 100);
 		
 		
+		btCheese.setBackground(Color.white); //메뉴사진(bt) 테두리 없애기
+		btCheese.setBorderPainted(false);
+		btEgg.setBackground(Color.white);
+		btEgg.setBorderPainted(false);
+		btHam.setBackground(Color.white);
+		btHam.setBorderPainted(false);
+		btBefore.setBackground(Color.white);
+		btBefore.setBorderPainted(false);
+		
+		
+		f.getContentPane().add(Lbline);		
+		f.getContentPane().add(Lbname);		
+		f.getContentPane().add(Lblogo);	
 		f.getContentPane().add(lbMenu);
 		f.getContentPane().add(btCheese);
 		f.getContentPane().add(btEgg);
@@ -69,6 +88,7 @@ class ShowEgg extends JFrame
 		f.getContentPane().add(btBefore);
 		f.getContentPane().setBackground(Color.WHITE);
 		f.setVisible(true);
+		f.getContentPane().setBackground(Color.white);
 		
 		
 		MyEventHandler handler = new MyEventHandler();

@@ -1,6 +1,5 @@
 package subway;
 import javax.swing.*;
-
 import java.awt.Color;
 import java.awt.event.*;
 
@@ -30,8 +29,8 @@ class ShowJam extends JFrame
 {
 	JFrame f = new JFrame();
 	JPanel p = new JPanel();
-	JButton btBlue,btStraw,btApple,btMain,btBefore,btNext;
-	JLabel lbMenu;
+	JButton btBlue,btStraw,btApple,btMain,btBefore,btNext,btmypage,btbookmark;
+	JLabel Lblogo,Lbname,Lbline,lbMenu;
 	
 	public ShowJam()
 	{
@@ -39,22 +38,44 @@ class ShowJam extends JFrame
 		f.setLocale(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(null);
+
 		
-		
-		btBlue = new JButton("Blueberry");
-		btStraw = new JButton("Strawberry");
-		btApple = new JButton("Apple");
+		Lblogo = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\까페로고.jpg")); //메뉴선택 라벨 생성
+		Lbname = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\주문하기.jpg")); //메뉴선택 라벨 생성
+		Lbline = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\선.png")); //메뉴선택 라벨 생성
+		btBlue = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\블루베리쨈.jpg"));
+		btStraw = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\딸기쨈.jpg"));
+		btApple = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\사과쨈.jpg"));
 		btMain = new JButton("메인");
-		btBefore = new JButton("이전");
-		lbMenu = new JLabel("<쨈 선택>");
+		btBefore = new JButton("",(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\돌아가기.png")));
+		lbMenu = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\쨈을 골라주세요.jpg"));
+		btbookmark = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
+		btmypage = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
 		
+		Lblogo.setBounds(5, 5, 100, 100); 
+		Lbname.setBounds(170, 10, 150, 100); 
+		Lbline.setBounds(0, 100, 500, 50); 
+		lbMenu.setBounds(100, 150, 250, 100);
+		btBlue.setBounds(10, 250, 130, 130);		/**setBounds -> 좌우,상하,너비,높이 순서*/
+		btStraw.setBounds(162,250, 130, 130);
+		btApple.setBounds(312,250, 130, 130);
+		btMain.setBounds(330, 530, 100, 50);
+		btBefore.setBounds(380, 10, 100, 100);
+		btbookmark.setBounds(0, 550, 125, 100);
+		btmypage.setBounds(125, 550, 125, 100);
 		
-		lbMenu.setBounds(162, 70, 100, 100);
-		btBlue.setBounds(10, 170, 122, 100);		/**setBounds -> 좌우,상하,너비,높이 순서*/
-		btStraw.setBounds(162, 170, 122, 100);
-		btApple.setBounds(312, 170, 122, 100);
-		btMain.setBounds(330, 30, 100, 50);
-		btBefore.setBounds(10, 30, 100, 50);
+		btBlue.setBackground(Color.white); //메뉴사진(bt) 테두리 없애기
+		btBlue.setBorderPainted(false);
+		btStraw.setBackground(Color.white);
+		btStraw.setBorderPainted(false);
+		btApple.setBackground(Color.white);
+		btApple.setBorderPainted(false);
+		btBefore.setBackground(Color.white);
+		btBefore.setBorderPainted(false);
+		btbookmark.setBackground(Color.white);
+		btbookmark.setBorderPainted(false);
+		btmypage.setBackground(Color.white);
+		btmypage.setBorderPainted(false);
 		
 		
 		f.getContentPane().add(lbMenu);
@@ -63,7 +84,12 @@ class ShowJam extends JFrame
 		f.getContentPane().add(btApple);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
-		f.getContentPane().setBackground(Color.WHITE);
+		f.getContentPane().add(Lbline);		
+		f.getContentPane().add(Lbname);		
+		f.getContentPane().add(Lblogo);		
+		f.getContentPane().add(btbookmark);		
+		f.getContentPane().add(btmypage);	
+		f.getContentPane().setBackground(Color.white);
 		f.setVisible(true);
 		
 		

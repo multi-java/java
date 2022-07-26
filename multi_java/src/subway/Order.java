@@ -15,10 +15,11 @@ public class Order extends JFrame
 	JScrollPane scrollPane;
 	
 	/**ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거*/
-	String orderList = ShowMainPage.getOrderList().toString().replace("[","").replace("]", "").replaceAll(",", "");
 	
 	int count = 1;
 	int total_price = 0;
+	int lastIdx = ShowMainPage.getOrderList().size() - 1;
+	String orderList = ShowMainPage.getOrderList().get(lastIdx).toString().replace("[","").replace("]", "").replaceAll(",", "");
 	public Order()
 	{
 		f.setSize(500,700);
@@ -37,7 +38,6 @@ public class Order extends JFrame
 		btMain.setBounds(330, 30, 100, 50);
 		btSave.setBounds(330, 150, 100, 50);
 		scrollPane.setBounds(10, 30, 200, 300);
-		
 		
 		ta.append(orderList+"총 결제 금액 : "+ShowMainPage.getTotal_price());/**TextArea에 출력할 내용 저장*/
 		count++;
@@ -71,7 +71,7 @@ public class Order extends JFrame
 		        {
 		            try 
 		            {
-		                printWriter = new PrintWriter("C:\\Users\\하은\\git\\java\\order_List.txt");/**파일 저장 경로를 지정*/
+		                printWriter = new PrintWriter("C:\\Users\\park\\git\\java\\order_List.txt");/**파일 저장 경로를 지정*/
 		                
 		                if(printWriter.checkError()==false)	/**파일 저장하는 도중에 에러가 발생하는지 체크, 에러가 발생하면 true 리턴*/
 				            JOptionPane.showMessageDialog(null,"저장이 완료되었습니다 ! ","Success",JOptionPane.INFORMATION_MESSAGE);
@@ -90,7 +90,7 @@ public class Order extends JFrame
 		    		}
 		            
 		        	/**널 체크를 위한 명령어, printWriter가 null이라면 NullPointerException 발생*/
-		            Objects.requireNonNull(printWriter).println(orderList);
+		            Objects.requireNonNull(printWriter).println(ShowMainPage.getOrderList().toString().replace("[","").replace("]", "").replaceAll(",", ""));
 		            printWriter.close();
 		        }
 			}

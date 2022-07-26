@@ -37,9 +37,9 @@ public class Menu extends Sandwich
 class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 {
 	JFrame f = new JFrame();
-	JPanel p,pTitle,pContent,pNavi = new JPanel();
-	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext;
-	JLabel lbMenu;
+	JPanel p = new JPanel();
+	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext,btmypage, btbookmark;
+	JLabel Lblogo, Lbline, Lbname,lbMenu;
 	ImageIcon img,img2,img3;
 	
 	
@@ -52,57 +52,91 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		f.getContentPane().setLayout(null);				/**프레임을 화면 가운데에 배치*/
 		
 		/**<레이아웃 구성>
-		1.메뉴사진(bt)
-		3.메뉴선택(lb)
-		3.이동(bt)
+		1.까페로고(lb)
+		2.메뉴이름(lb)
+		3.메뉴사진(bt)
+		4.메뉴선택(lb)
+		5.이동(bt)
 		*/
+		
+		
+		////////////1. 까페로고(lb)
+		Lblogo = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\까페로고.jpg")); //메뉴선택 라벨 생성
+		Lblogo.setBounds(5, 5, 100, 100); //메뉴선택 사이즈 설정
+		f.getContentPane().add(Lblogo);		//메뉴선택 라벨 붙임
+		
+		////////////2. 메뉴이름(lb)
+		Lbname = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\주문하기.jpg")); //메뉴선택 라벨 생성
+		Lbname.setBounds(170, 10, 150, 100); //메뉴선택 사이즈 설정
+		f.getContentPane().add(Lbname);		//메뉴선택 라벨 붙임
+		
+		////////////3. 선(lb)
+		Lbline = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\선.png")); //메뉴선택 라벨 생성
+		Lbline.setBounds(0, 100, 500, 50); //메뉴선택 사이즈 설정
+		f.getContentPane().add(Lbline);		//메뉴선택 라벨 붙임
+		
 
-		//////////// 1. 메뉴사진(bt)
-		btEgg = new JButton("에그 토스트"); //메뉴사진 버튼 생성
-		btBacon = new JButton("베이컨 토스트",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Straw_JAm (2).png"));
-		btCheese = new JButton("치즈 토스트");
+		//////////// 4. 메뉴사진(bt)
+		btEgg = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\에그토스트.jpg")); //메뉴사진(bt) 생성
+		btBacon = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\베이컨토스트.jpg"));
+		btCheese = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\치즈토스트.jpg"));
 		
-		//btEgg.setIcon(i); //메뉴버튼에 이미지넣기
-		//btBacon.setIcon(i);
-		//btCheese.setIcon(i);
 		
-		btEgg.setBounds(10, 170, 122, 100);	//메뉴사진 버튼 사이즈 설정 (setBounds -> 좌우,상하,너비,높이 순서)
-		btBacon.setBounds(162, 170, 122, 100);
-		btCheese.setBounds(312, 170, 122, 100);
-		btBacon.setVerticalTextPosition(JButton.BOTTOM);
-		btBacon.setHorizontalTextPosition(JButton.CENTER);
+		btEgg.setBounds(10, 250, 130, 130);	//메뉴사진(bt) 사이즈 설정 (setBounds -> 좌우,상하,너비,높이 순서)
+		btBacon.setBounds(162, 250, 130, 130);
+		btCheese.setBounds(312, 250, 130, 130);
 		
-		//img = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Bacon_Toast.jpg"); //이미지파일가져오기
-		//img2 = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Cheeses_Toast.jpg");
-		//img3 = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\Egg_Toast.jpg");
+		btEgg.setBackground(Color.white); //메뉴사진(bt) 테두리 없애기
+		btEgg.setBorderPainted(false);
+		btBacon.setBackground(Color.white);
+		btBacon.setBorderPainted(false);
+		btCheese.setBackground(Color.white);
+		btCheese.setBorderPainted(false);
 		
 		
 		  f.getContentPane().add(btEgg); //메뉴사진 버튼 붙이기 f.getContentPane().add(btBacon);
 		  f.getContentPane().add(btCheese);
+		  f.getContentPane().add(btBacon);
 		 
-		f.add(p);
 		//p.add(pTitle,"North");
 		//p.add(pContent,"Center");
 		//p.add(pNavi,"South");
 		
 		
-		//////////// 2. 메뉴선택(lb)
-		lbMenu = new JLabel("<메뉴 선택>"); //메뉴선택 라벨 생성
-		lbMenu.setBounds(162, 70, 100, 100); //메뉴선택 사이즈 설정
-		
-		pContent.add(lbMenu);		//메뉴선택 라벨 붙임
-		
-		
-		////////////3. 이동(bt)	
-		btMain = new JButton("메인"); //이동버튼 생성
-		btBefore = new JButton("이전");
 
-		btMain.setBounds(330, 30, 100, 50); //이동버튼 사이즈
-		btBefore.setBounds(10, 30, 100, 50);
+		//////////// 5. 메뉴선택(lb)
+		lbMenu = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\메뉴를 골라주세요.jpg")); //메뉴선택 라벨 생성
+		lbMenu.setBounds(100, 150, 250, 100); //메뉴선택 사이즈 설정
+		f.getContentPane().add(lbMenu);		//메뉴선택 라벨 붙임
 		
-		pContent.add(btMain); //이동버튼 붙이기
-		pContent.add(btBefore);
-		p.setBackground(Color.WHITE);
+		
+		////////////6. 이동(bt)	
+		btMain = new JButton("메인"); //이동버튼 생성
+		btBefore = new JButton("",(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\돌아가기.png")));
+		btbookmark = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
+		btmypage = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
+		
+		btMain.setBounds(700, 700, 100, 50); //이동버튼 사이즈
+		btBefore.setBounds(380, 10, 100, 100);
+		btbookmark.setBounds(0, 550, 125, 100);
+		btmypage.setBounds(125, 550, 125, 100);
+
+		
+
+		f.getContentPane().add(btMain); //이동버튼 붙이기
+		f.getContentPane().add(btBefore);
+		f.getContentPane().add(btbookmark);		
+		f.getContentPane().add(btmypage);	
+		f.getContentPane().setBackground(Color.white);
+		
+		
+		btBefore.setBackground(Color.white); //이동버튼(bt) 테두리 없애기
+		btBefore.setBorderPainted(false);
+		btbookmark.setBackground(Color.white);
+		btbookmark.setBorderPainted(false);
+		btmypage.setBackground(Color.white);
+		btmypage.setBorderPainted(false);
+
 		
 		
 		f.setVisible(true);

@@ -11,12 +11,7 @@ import java.util.ArrayList;
 
 public class ShowMainPage extends JFrame
 {
-	Dimension dim = new Dimension(400,150);
 	JFrame f = new JFrame();
-	JPanel p = new JPanel();
-	JPanel pNavi = new JPanel();
-	JPanel pTitle = new JPanel();
-	JPanel pContent = new JPanel();
 	JButton btMenu,btMypage;
 	private static ArrayList<String>  orderList = new ArrayList<String>(4);/**주문한 내역을 저장하기 위한 ArrayList*/
 	private static int total_price=0;/**주문한 메뉴의 가격을 모두 합산한 가격*/
@@ -36,6 +31,10 @@ public class ShowMainPage extends JFrame
 	
 	public ShowMainPage()
 	{
+		f.setSize(500,700);
+		f.setLocale(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);/**프레임을 닫았을 때 메모리에서 제거되도록 설정*/
+		f.getContentPane().setLayout(null);	
 		/*
 		 * f.setSize(500,700); f.setLocale(null);
 		 * f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -46,17 +45,12 @@ public class ShowMainPage extends JFrame
 		/*
 		 * btMenu.setBounds(330, 30, 100, 50); btMypage.setBounds(100, 500, 100, 50);
 		 */
-		
-		pNavi.setLayout(new BoxLayout(pNavi,BoxLayout.X_AXIS));
-		pTitle.setLayout(new BoxLayout(pTitle,BoxLayout.X_AXIS));
-		pContent.setLayout(new BoxLayout(pContent,BoxLayout.X_AXIS));
-		p.setLayout(new BoxLayout(p,BoxLayout.Y_AXIS));
-		
-		pNavi.add(btMenu);
-		pTitle.add(btMypage);
-		pContent.add(btMenu);
-		f.add(p,BorderLayout.CENTER);
-		f.pack();
+		btMenu.setBounds(0, 50, 125, 100);
+		btMypage.setBounds(125, 50, 125, 100);
+
+		f.getContentPane().add(btMenu);		
+		f.getContentPane().add(btMypage);	
+		f.getContentPane().setBackground(Color.white);
 		
 		/*
 		 * f.getContentPane().add(btMenu); f.getContentPane().add(btMypage);
@@ -66,13 +60,12 @@ public class ShowMainPage extends JFrame
 		//p.add(pNavi,"South");
 		//p.add(pTitle,"North");
 		//pContent.add(btMenu);
+		f.setVisible(true);
+		
+		
 		MyEventHandler handler = new MyEventHandler();
 		btMenu.addActionListener(handler);
 		btMypage.addActionListener(handler);
-		f.setLocation(200,400);
-		f.setPreferredSize(dim);
-		f.setVisible(true);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	
