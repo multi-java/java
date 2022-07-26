@@ -6,22 +6,59 @@ package subway;
  * 작성일: 22-07-23
  * 버전: 1.1
  */
-import javax.swing.*; 
+import javax.swing.*;   
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
 public class Gui03_JoinMembership extends JFrame {
-	JFrame f = new JFrame("::회원가입::");
+	JFrame f = new JFrame();
 	JPanel p,pN,pC,pS; 
 	JButton bJoin,bBack; 
 	JTextField tId, tPwd, tName,tPhone, tBirthdate; 
 	JLabel laId, laPwd, laName,laPhone, laBirthdate;
 	JLabel laText;
 	Icon iconBack;
-	ArrayList<Customer> customers = new ArrayList<Customer>();//ArrayList에 고객정보 저장하기 위해
 	
-	//JTabbedPane tabP; //지우기
+	
+	/** 1. 회원가입한 고객정보를 저장하기위해 ArrayList 생성 및 캡슐화 
+	 * -findID는 ArrayList에 id가 있는지 확인을 합니다. 
+	 * -findIDPW는 ArrayList에 id, pw가 있는지 확인을 해서 로그인 가능여부를 확인합니다.
+	 * */
+private static ArrayList<Customer> customers = new ArrayList<Customer>();
+	
+	public static boolean findID(String id) {
+		for (int i=0; i<customers.size(); i++) {
+			Customer c = customers.get(i);
+			if (c.getId().equals(id)) return true;
+		}
+		return false;
+	}
+	public static boolean findPW(String pw) {
+		for (int i=0; i<customers.size(); i++) {
+			Customer c = customers.get(i);
+			if (c.getPassword().equals(pw)) return true;
+		}
+		return false;
+	}
+	public static boolean findIDPW(String id, String pw) {
+		for (int i=0; i<customers.size(); i++) {
+			Customer c = customers.get(i);
+			if (c.getId().equals(id) && c.getPassword().equals(pw)) return true;
+		}
+		return false;
+	}
+
+	
+	public static ArrayList<Customer> getCustomers() {
+		return customers;
+	}
+	
+	public static void setCustomers(Customer customers) {
+		Gui03_JoinMembership.customers.add(customers);
+	}
+
+
 	
 		@Override
 		public Insets getInsets () {
@@ -34,8 +71,7 @@ public class Gui03_JoinMembership extends JFrame {
 			super(":: Toast House App v1.1 ");
 			
 			/**1.전체 패널(p)를  BorderLayout구성*/
-			p=new JPanel(new BorderLayout());
-			f.add(p);
+			p=new JPanel(new BorderLayout(10,10));
 			p.setBackground(Color.white);
 			p.add(pC=new JPanel(),"Center");
 			pC.setBackground(Color.white);
@@ -45,7 +81,7 @@ public class Gui03_JoinMembership extends JFrame {
 			pS.setBackground(Color.white);
 			
 			/**2. 북쪽의 pN에 회원가입문구 */
-			laText=new JLabel("회원가입");
+			laText=new JLabel("회원가입"); 
 			laText.setHorizontalTextPosition(JLabel.CENTER);
 			laText.setVerticalTextPosition(JLabel.TOP);
 			laText.setFont(new Font("sans-serif",Font.BOLD,28));
@@ -53,13 +89,13 @@ public class Gui03_JoinMembership extends JFrame {
 			
 			
 			/**3. 중앙의 pC에 회원가입에 대한 정보 입력칸*/
-			pC.setLayout(new GridLayout(7,2,30,50));
+			pC.setLayout(new GridLayout(5,2,30,30));
 					
-			laId=new JLabel("아이디");
-			laPwd=new JLabel("비밀번호");
-			laName=new JLabel("이름");
-			laBirthdate=new JLabel("생년월일");
-			laPhone=new JLabel("연락처");
+			laId=new JLabel("아이디", JLabel.CENTER);
+			laPwd=new JLabel("비밀번호", JLabel.CENTER);
+			laName=new JLabel("이름", JLabel.CENTER);
+			laBirthdate=new JLabel("생년월일", JLabel.CENTER);
+			laPhone=new JLabel("연락처", JLabel.CENTER);
 	
 					
 			tId=new JTextField(15);
@@ -87,7 +123,7 @@ public class Gui03_JoinMembership extends JFrame {
 			
 			
 			/**4.남쪽의 pS에 회원가입, 뒤로 버튼*/ //이전버튼을 제목옆에 위로 올리기
-			bJoin=new JButton(" 회원가입 ");//회원가입 버튼
+			bJoin=new JButton(" 회원가입 ");
 			bJoin.setBackground(Color.white);
 			pS.add(bJoin);
 			
@@ -96,84 +132,81 @@ public class Gui03_JoinMembership extends JFrame {
 			bBack.setBackground(Color.white);
 			pS.add(bBack);
 			
-			/*지우기
-			tabP=new JTabbedPane();
-			add(tabP);
-			tabP.add(p,"Main");
-			tabP.setSelectedIndex(0);*/
-			
-
+			//이벤트핸들러 부착
 			MyEventHandler handler = new MyEventHandler();
 			bBack.addActionListener(handler);
 			bJoin.addActionListener(handler);
 			
-			/**5.전체 프레임 f에 모든 패널을 배치. 
+			/**5.전체 프레임 f에 전체 패널p를 배치. 
 			 * 크기설정, 시각화 구현 및 창닫기 처리*/
 			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			
-			//f.add(pN);
-			//f.add(pC);
-			//f.add(pS);
-			//f.setVisible(true);
-			//f.setSize(500,700);
-			//버튼누를때 나올것이니
+			f.add(p);
+			f.setVisible(true);
+			f.setSize(500,700);
 		}
 		
 		/**6.이벤트처리로 회원가입 절차
 		 *  뒤로 버튼을 누르면 로그인화면으로 이동
 		 *  
 		 * 회원가입 버튼을 누르면 고객정보 저장해서 회원가입하고, 메인화면으로 이동
-		 * -중복x, 사용자정의예외+메시지 "이미 가입한 고객님이십니다"
-		 * -빈칸있으면, NullPointerException+메시지"고객님의 정보를 입력해주십시오"
-		 * -생년월일은 6자리로. 6자리 초과하면(7자리부터), 6자리보다 부족하면. 사용자정의예외+메시지"생년월일은 6자리로 입력해주십시오."
+		 * 
+		 * -빈칸 입력 체크: 빈칸 있으면 경고메시지 "고객님의 정보를 입력해주십시오." 
+		 * -생년월일 숫자 체크 : 숫자외에는 경고메시지"생년월일은 숫자만 입력 가능합니다."
+		 * 							+ NumberFormatException을 try~catch절로 예외처리
+		 * -아이디 중복 체크: for반복문으로 arraylist에 저장된 ID를 식별자로  중복체크해서, 
+		 * 					중복ID의 경우 경고메시지 "이미 가입한 이이디입니다."
+		 * - 회원 정보를 ArrayList에 저장하여 회원가입 완료하고 메인화면으로 이동
 		 * */
 		
-		/*해결해야할 것
-		 *1. 회원가입버튼의 이벤트 처리-에러해결, 생년월일은 숫자로 입력해야함 글자면 에러 예외처리 
-		 */
-		
-		
+			
 		
 		class MyEventHandler implements ActionListener{
 			
 			public void actionPerformed(ActionEvent e) {
 				Object obj=e.getSource();
 				if(obj==bBack) {//뒤로 버튼
-					// System.out.println("ddd");
 					new Gui01_Login();
 					p.setVisible(false);
 				}
 				if(obj==bJoin) {//회원가입 버튼
 					//입력한 값
-					String id=tId.getText();
-					String pwd=tPwd.getText();
-					String name=tName.getText();
-					String phone=tPhone.getText();
-					int birthdate=Integer.parseInt(tBirthdate.getText());
+					String id=tId.getText().trim();
+					String pwd=tPwd.getText().trim();
+					String name=tName.getText().trim();
+					String phone=tPhone.getText().trim();
+					String birthDate = tBirthdate.getText().trim();
+			        int iBirthDate = 0;
 					
-					try {//빈칸 있는 경우 
-						if((id=null)||(pwd=null)||(name=null)||(phone=null)||(birthdate=null)){
-						//(id.trim().isEmpty()||pwd.trim().isEmpty()||name.trim().isEmpty()||phone.trim()||birthdate.trim()){
-						//((id=null)||(pwd=null)||(name=null)||(phone=null)||(birthdate=null)){
-						throw NullPointerException ("고객님의 정보를 입력해주십시오");
-						}else if((id==customers.get(0).getId())&&(pwd==customers.get(0).getPassword())&&(name==customers.get(0).getName())&&(phone==customers.get(0).getPhone())&&(birthdate==customers.get(0).getBirthdate())){
-							//중복인 경우
-							throw NotSupportedNameException ("이미 가입한 고객님이십니다");
-						}else {//회원가입버튼누르면 고객정보 저장해서 회원가입하고 메인화면으로 이동
-							customers.add(new Customer(name,id,pwd,phone,birthdate));
-							//System.out.println(customers.get(0).getName()); 정보 확인
-							f.setVisible(false);
-							new Gui02_MainHome();	
-						}
-					}catch(NullPointerException  e) {
-						String msg=e.getMessage();
-						JOptionPane.showMessageDialog(p,msg);
-					}catch(NotSupportedNameException  e) {
-						String msg=e.getMessage();
-						JOptionPane.showMessageDialog(p,msg);
-					}
+			        // 빈칸 입력 체크
+			        if (id.isEmpty() || pwd.isEmpty() || name.isEmpty() || phone.isEmpty() || birthDate.isEmpty()) {
+			            JOptionPane.showMessageDialog(p, "고객님의 정보를 입력해주십시오.", "회원정보", JOptionPane.WARNING_MESSAGE);
+			            return;
+			        }
+			        //NullPointerException 확인해보기
 					
-					//생년월일은 숫자로 입력해야함 글자면 에러 예외처리 
+			        // 생년월일 숫자 변환
+			        try {
+			            iBirthDate = Integer.parseInt(birthDate);
+			        } catch (NumberFormatException nfe) {
+			            JOptionPane.showMessageDialog(p, "생년월일은 숫자만 입력 가능합니다.", "회원정보", JOptionPane.WARNING_MESSAGE);
+			            return;
+			        }
+					
+			        // 아이디 중복 체크:  식별자인 사용자ID 값으로만 중복체크를 한다. 사용자ID 이외 다른 값은 중복이 가능하다.
+			        for (Customer customer : customers) {
+			            if (customer.getId().equals(id)) {
+			                JOptionPane.showMessageDialog(p, "이미 가입한 이이디입니다. 다른 아이디를 사용해주세요.", "회원정보", JOptionPane.WARNING_MESSAGE);
+			                return;
+			            }
+			        }
+			        
+			     // 회원가입 등록
+			        customers.add(new Customer(name, id, pwd, phone, iBirthDate));
+			        
+			        JOptionPane.showMessageDialog(p,"회원가입을 축하합니다");
+			        f.setVisible(false);
+			        new Gui02_MainHome();
+			 
 						
 					
 				}//if
@@ -182,10 +215,5 @@ public class Gui03_JoinMembership extends JFrame {
 			}// 보이드
 		}//핸들러 클래스
 		
-		public static void main(String[] args) {
-			Gui03_JoinMembership my=new Gui03_JoinMembership();
-			my.f.setSize(500,700);
-			my.f.setVisible(true);
-		}
 
 }//클래스

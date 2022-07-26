@@ -1,8 +1,7 @@
 package subway;
 
-import java.util.ArrayList;
 
-/** 
+/** 회원정보
  * 
  * 작성자: 김보미
  * 작성일: 22-07-20
@@ -31,7 +30,7 @@ public class Customer {
 	public String getName() {
 		return name;
 	}
-	public int getBirthday() {
+	public int getBirthdate() {
 		return birthdate;
 	}
 	public String getId() {
