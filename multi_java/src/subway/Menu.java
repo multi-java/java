@@ -38,7 +38,7 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 {
 	JFrame f = new JFrame();
 	JPanel p = new JPanel();
-	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext,btmypage, btbookmark;
+	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext,btmypage, btbookmark, btlogout;
 	JLabel Lblogo, Lbline, Lbname,lbMenu;
 	ImageIcon img,img2,img3;
 	
@@ -98,6 +98,7 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		f.getContentPane().add(btCheese);
 		
 		
+		
 		//////////// 5. 메뉴선택(lb)
 		lbMenu = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\메뉴를 골라주세요.jpg")); //메뉴선택 라벨 생성
 		lbMenu.setBounds(100, 150, 250, 100); //메뉴선택 사이즈 설정
@@ -109,10 +110,12 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		btBefore = new JButton("",(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\돌아가기.png")));
 		btbookmark = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
 		btmypage = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
+		btlogout = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\로그아웃.jpg"));
 		
 		btMain.setBounds(700, 700, 100, 50); //이동버튼 사이즈
 		btBefore.setBounds(380, 10, 100, 100);
 		btbookmark.setBounds(0, 550, 125, 100);
+		btlogout.setBounds(250, 550, 125, 100);
 		btmypage.setBounds(125, 550, 125, 100);
 
 		
@@ -120,6 +123,7 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		f.getContentPane().add(btBefore);
 		f.getContentPane().add(btbookmark);		
 		f.getContentPane().add(btmypage);	
+		f.getContentPane().add(btlogout);	
 		f.getContentPane().setBackground(Color.white);
 		
 		
@@ -129,6 +133,8 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		btbookmark.setBorderPainted(false);
 		btmypage.setBackground(Color.white);
 		btmypage.setBorderPainted(false);
+		btlogout.setBackground(Color.white);
+		btlogout.setBorderPainted(false);
 
 		
 		
