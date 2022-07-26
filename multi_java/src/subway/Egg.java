@@ -86,6 +86,7 @@ class ShowEgg extends JFrame
 		f.getContentPane().add(btHam);
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btBefore);
+		f.getContentPane().setBackground(Color.WHITE);
 		f.setVisible(true);
 		f.getContentPane().setBackground(Color.white);
 		

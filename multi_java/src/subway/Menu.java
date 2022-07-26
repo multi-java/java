@@ -38,7 +38,7 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 {
 	JFrame f = new JFrame();
 	JPanel p = new JPanel();
-	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext,btmypage, btbookmark, btlogout;
+	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext,btmypage, btbookmark, btlogout, btShopping;
 	JLabel Lblogo, Lbline, Lbname,lbMenu;
 	ImageIcon img,img2,img3;
 	
@@ -93,12 +93,19 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		btCheese.setBackground(Color.white);
 		btCheese.setBorderPainted(false);
 		
-		f.getContentPane().add(btEgg); //메뉴사진 버튼 붙이기
-		f.getContentPane().add(btBacon);
-		f.getContentPane().add(btCheese);
+		
+		  f.getContentPane().add(btEgg); //메뉴사진 버튼 붙이기 f.getContentPane().add(btBacon);
+		  f.getContentPane().add(btCheese);
+		  f.getContentPane().add(btBacon);
+		 
+		//p.add(pTitle,"North");
+		//p.add(pContent,"Center");
+		//p.add(pNavi,"South");
 		
 		
-		
+
+
+
 		//////////// 5. 메뉴선택(lb)
 		lbMenu = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\메뉴를 골라주세요.jpg")); //메뉴선택 라벨 생성
 		lbMenu.setBounds(100, 150, 250, 100); //메뉴선택 사이즈 설정
@@ -107,32 +114,42 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		
 		////////////6. 이동(bt)	
 		btMain = new JButton("메인"); //이동버튼 생성
-		btBefore = new JButton("",(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\돌아가기.png")));
-		btbookmark = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
+
+		btBefore = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\돌아가기.png"));
 		btmypage = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
+		btShopping = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\mv주문하기.jpg"));
+		btbookmark = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
 		btlogout = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\로그아웃.jpg"));
-		
-		btMain.setBounds(700, 700, 100, 50); //이동버튼 사이즈
-		btBefore.setBounds(380, 10, 100, 100);
-		btbookmark.setBounds(0, 550, 125, 100);
-		btlogout.setBounds(250, 550, 125, 100);
-		btmypage.setBounds(125, 550, 125, 100);
+	
 
 		
+		
+		btMain.setBounds(700, 700, 100, 50); //이동버튼 사이즈
+		btBefore.setBounds(380, 10, 100, 100); 
+		btmypage.setBounds(0, 570, 125, 100); //x, y, 가로, 세로
+		btShopping.setBounds(125,570,125,100);
+		btbookmark.setBounds(250, 570, 125, 100); //x, y, 가로, 세로
+		btlogout.setBounds(375, 570, 125, 100); //x, y, 가로, 세로
+
+		
+
 		f.getContentPane().add(btMain); //이동버튼 붙이기
 		f.getContentPane().add(btBefore);
-		f.getContentPane().add(btbookmark);		
 		f.getContentPane().add(btmypage);	
+		f.getContentPane().add(btShopping);
+		f.getContentPane().add(btbookmark);	
 		f.getContentPane().add(btlogout);	
 		f.getContentPane().setBackground(Color.white);
 		
 		
 		btBefore.setBackground(Color.white); //이동버튼(bt) 테두리 없애기
 		btBefore.setBorderPainted(false);
-		btbookmark.setBackground(Color.white);
-		btbookmark.setBorderPainted(false);
 		btmypage.setBackground(Color.white);
 		btmypage.setBorderPainted(false);
+		btShopping.setBackground(Color.white);
+		btShopping.setBorderPainted(false);
+		btbookmark.setBackground(Color.white);
+		btbookmark.setBorderPainted(false);
 		btlogout.setBackground(Color.white);
 		btlogout.setBorderPainted(false);
 
@@ -166,8 +183,6 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		{
 			Object obj = e.getSource();
 			
-			
-			
 		//////////////1-1. 메뉴 사진 버튼
 			if(obj==btEgg)//Egg 버튼을 클릭했을 때
 			{
@@ -184,7 +199,9 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 			}
 			else if(obj==btBacon)
 			{
-				if (ShowMainPage.getOrderList().size()<4){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
+				if 
+				(
+					ShowMainPage.getOrderList().size()<4){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
 					Menu.setMenu("Bacon");
 					Menu.setPrice(3000);
 					f.setVisible(false);
@@ -197,7 +214,8 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 			}
 			else if(obj==btCheese)
 			{	
-				if (ShowMainPage.getOrderList().size()<4){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
+				if (
+						ShowMainPage.getOrderList().size()<4){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
 						Menu.setMenu("Cheese");
 						Menu.setPrice(2500);
 						f.setVisible(false);
