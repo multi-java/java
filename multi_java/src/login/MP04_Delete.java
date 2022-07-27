@@ -50,6 +50,7 @@ public class MP04_Delete extends JFrame {
 		pS.setLayout(new GridLayout(1,2));
 		btBefore = new JButton("취 소");
 		
+		
 		btDel = new JButton("회원 탈퇴");
 		btDel.setBackground(Color.red);
 		btDel.setForeground(Color.white);
@@ -63,14 +64,14 @@ public class MP04_Delete extends JFrame {
 		/**1.3 탈퇴 고객 안내문*/
 		pC.setLayout(new GridLayout(6,1));
 		w1=new JLabel(" ");
-		w2= new JLabel("07CAFE 회원탈퇴 시 ");
-		w2.setFont(new Font("sans-serif",Font.BOLD,20));
+		w2= new JLabel("cafe7 회원탈퇴 시 ");
+		w2.setFont(new Font("NanumGothic",Font.BOLD,20));
 		w3= new JLabel("회원정보 및 서비스 이용기록은 모두 삭제되며");
-		w3.setFont(new Font("sans-serif",Font.BOLD,20));
+		w3.setFont(new Font("NanumGothic",Font.BOLD,20));
 		w4= new JLabel("삭제된 데이터는 복구가 불가능합니다.");
-		w4.setFont(new Font("sans-serif",Font.BOLD,20));
-		w5= new JLabel("그동안 07카페를 이용해주셔서 감사합니다.");
-		w5.setFont(new Font("sans-serif",Font.BOLD,20));
+		w4.setFont(new Font("NanumGothic",Font.BOLD,20));
+		w5= new JLabel("그동안 cafe7을 이용해주셔서 감사합니다.");
+		w5.setFont(new Font("NanumGothic",Font.BOLD,20));
 		w6= new JLabel(" ");
 		
 		pC.add(w1);

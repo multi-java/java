@@ -52,10 +52,10 @@ public class MP02_Show extends JFrame {
 		/**1.2 하단 네비게이션바*/
 		pS.setLayout(new GridLayout(1,4));
 		
-		iconMymenu=new ImageIcon("주문내역.jpg");
-		iconMenu=new ImageIcon("mv주문하기.jpg");
-		iconMypage=new ImageIcon("마이페이지.jpg");
-		iconLogout=new ImageIcon("로그아웃.jpg");
+		iconMymenu=new ImageIcon("image/주문내역.jpg");
+		iconMenu=new ImageIcon("image/mv주문하기.jpg");
+		iconMypage=new ImageIcon("image/마이페이지.jpg");
+		iconLogout=new ImageIcon("image/로그아웃.jpg");
 		
 		bbMypage=new JButton(iconMypage );
 		bbMypage.setBackground(Color.white);
@@ -76,8 +76,11 @@ public class MP02_Show extends JFrame {
 		
 		/**
 		 *  2. 회원 정보 출력
-		 *  회원가입 시 배열에 저장된 개인 정보를
-		 *  로그인 시 입력한 아이디를 통해 배열에서 꺼내와 출력
+		 *  회원가입 시 배열에 저장된 개인 정보를 꺼내와서 출력한다.
+		 *  
+		 *  로그인 시 입력한 아이디 Gui01_Login.id 를
+		 *  if문과 for루프를 통해 배열에 저장된 아이디들과 비교하여
+		 *  동일한 아이디를 발견 시 해당 아이디의 정보들을 변수에 저장하여 출력한다.
 		 */
 		String a="";
 		String b="";
@@ -98,18 +101,18 @@ public class MP02_Show extends JFrame {
 			}
 		}
 			
-		//고객 정보 출력
+		/** 2.2 해당 정보 출력
+		 */
 			laId=new JLabel("아이디 :  "+Gui01_Login.id);
-			laId.setFont(new Font("sans-serif",Font.BOLD,24));
+			laId.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laPwd=new JLabel("패스워드 :  "+a);
-			laPwd.setFont(new Font("sans-serif",Font.BOLD,24));
+			laPwd.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laName=new JLabel("이름 :  "+b);
-			laName.setFont(new Font("sans-serif",Font.BOLD,24));
+			laName.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laBirthdate=new JLabel("생년월일 :  "+c);
-			laBirthdate.setFont(new Font("sans-serif",Font.BOLD,24));
-
+			laBirthdate.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laPhone=new JLabel("연락처 :  "+d);
-			laPhone.setFont(new Font("sans-serif",Font.BOLD,24));
+			laPhone.setFont(new Font("NanumGothic",Font.BOLD,26));
 
 		pC.add(laId);
 		pC.add(laPwd);

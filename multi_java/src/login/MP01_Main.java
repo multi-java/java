@@ -51,10 +51,10 @@ public class MP01_Main extends JFrame {
 		/**1.2 하단 네비게이션바*/
 		pS.setLayout(new GridLayout(1,4));
 		
-		iconMymenu=new ImageIcon("주문내역.jpg");
-		iconMenu=new ImageIcon("mv주문하기.jpg");
-		iconMypage=new ImageIcon("마이페이지.jpg");
-		iconLogout=new ImageIcon("로그아웃.jpg");
+		iconMymenu=new ImageIcon("image/주문내역.jpg");
+		iconMenu=new ImageIcon("image/mv주문하기.jpg");
+		iconMypage=new ImageIcon("image/마이페이지.jpg");
+		iconLogout=new ImageIcon("image/로그아웃.jpg");
 		
 		bbMypage=new JButton(iconMypage );
 		bbMypage.setBackground(Color.white);
@@ -74,8 +74,11 @@ public class MP01_Main extends JFrame {
 		pC.setLayout(new GridLayout(3,1));
 
 		sMember = new JButton("회원정보 조회");
+		sMember.setFont(new Font("NanumGothic",Font.BOLD,35));
 		cMember = new JButton("회원정보 수정");
+		cMember.setFont(new Font("NanumGothic",Font.BOLD,35));
 		dMember = new JButton("회원 탈퇴");
+		dMember.setFont(new Font("NanumGothic",Font.BOLD,35));
 
 			pC.add(sMember);
 			pC.add(cMember);

@@ -65,7 +65,7 @@ private static ArrayList<Customer> customers = Gui03_JoinMembership.getCustomers
 			
 			super(":: Toast House App v1.1 ");
 			
-			/**1.전체 패널(p)를  BorderLayout구성*/
+			/**2.1 전체 패널 BorderLayout구성*/
 			p=new JPanel(new BorderLayout(10,10));
 			p.setBackground(Color.white);
 			p.add(pC=new JPanel(),"Center");
@@ -77,7 +77,7 @@ private static ArrayList<Customer> customers = Gui03_JoinMembership.getCustomers
 			
 			p.add(new JLabel("   "), "East");
 			
-			/**2. 북쪽의 pN에 안내 문구 */
+			/**2.2 타이틀 */
 			laText=new JLabel("정보 수정"); 
 			laText.setHorizontalTextPosition(JLabel.CENTER);
 			laText.setVerticalTextPosition(JLabel.TOP);
@@ -85,14 +85,19 @@ private static ArrayList<Customer> customers = Gui03_JoinMembership.getCustomers
 			pN.add(laText); 
 			
 			
-			/**3. 중앙의 pC에 회원 정보 입력칸*/
+			/**2.3 중심 화면- 정보 입력칸*/
 			pC.setLayout(new GridLayout(5,2,30,30));
 					
-			laId=new JLabel("아이디 :", JLabel.CENTER);
+			laId=new JLabel("아이디 ", JLabel.CENTER);
+			laId.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laPwd=new JLabel("비밀번호", JLabel.CENTER);
+			laPwd.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laName=new JLabel("이름", JLabel.CENTER);
+			laName.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laBirthdate=new JLabel("생년월일", JLabel.CENTER);
+			laBirthdate.setFont(new Font("NanumGothic",Font.BOLD,26));
 			laPhone=new JLabel("연락처", JLabel.CENTER);
+			laPhone.setFont(new Font("NanumGothic",Font.BOLD,26));
 			
 			JPanel pnN = new JPanel();
 			
@@ -103,17 +108,26 @@ private static ArrayList<Customer> customers = Gui03_JoinMembership.getCustomers
 			pnN.add(laText); 
 			
 
-			/**
-			 * 3. 로그인한 계정의 정보를 불러오기 위한 배열 탐색 for루프
-			 * 불러온 정보를 담은 변수들을 저장
-			 */
-			
+		/**
+		 *  3. 회원 정보 수정
+		 *  회원가입 시 배열에 저장된 개인 정보를 꺼내와서 출력한다.
+		 *  
+		 *  로그인 시 입력한 아이디 Gui01_Login.id 를
+		 *  if문과 for루프를 통해 배열에 저장된 아이디들과 비교하여
+		 *  동일한 아이디를 발견 시 해당 아이디의 정보들을 변수에 저장하여 출력한다.
+		 *  
+		 *  
+		 */
+
 			String a="";
 			String b="";
 			int c=0;
 			String d="";
 			int i=0;
 
+			/**
+			 * 2.1 로그인한 아이디와 일치하는 정보를 가진 배열을 탐색하는 for루프
+			 */
 			for(;i<Gui03_JoinMembership.getCustomers().size();i++) {
 			if(Gui03_JoinMembership.getCustomers().get(i).getId().equals(Gui01_Login.id))
 			{
@@ -125,19 +139,24 @@ private static ArrayList<Customer> customers = Gui03_JoinMembership.getCustomers
 			}
 			
 			/**
-			 * 4. 정보 수정란
+			 * 3. 정보 수정란
 			 * 텍스트필드에 적힌 기존의 정보를 지우고 새로운 정보를 입력한 뒤
 			 * 저장 버튼을 누르면 정보 수정 완료
 			 */
 			tId=new JTextField(Gui01_Login.id,15);
+			tId.setFont(new Font("NanumGothic",Font.BOLD,26));
 			tId.setBackground(Color.white);
 			tPwd=new JTextField(a,15);
+			tPwd.setFont(new Font("NanumGothic",Font.BOLD,26));
 			tPwd.setBackground(Color.white);
 			tName=new JTextField(b,15);
+			tName.setFont(new Font("NanumGothic",Font.BOLD,26));
 			tName.setBackground(Color.white);
 			tBirthdate=new JTextField(String. valueOf(c),15);
+			tBirthdate.setFont(new Font("NanumGothic",Font.BOLD,26));
 			tBirthdate.setBackground(Color.white);
 			tPhone=new JTextField(d,15);
+			tPhone.setFont(new Font("NanumGothic",Font.BOLD,26));
 			tPhone.setBackground(Color.white);
 			
 	
@@ -156,11 +175,13 @@ private static ArrayList<Customer> customers = Gui03_JoinMembership.getCustomers
 			
 			/**4.남쪽의 pS에 저장, 뒤로 버튼*/ //이전버튼을 제목옆에 위로 올리기
 			bJoin=new JButton(" 저 장 ");
+			bJoin.setFont(new Font("NanumGothic",Font.BOLD,26));
 			bJoin.setBackground(Color.white);
 			pS.add(bJoin);
 			
 	
 			bBack=new JButton(" 취 소 ");
+			bBack.setFont(new Font("NanumGothic",Font.BOLD,26));
 			bBack.setBackground(Color.white);
 			pS.add(bBack);
 			
@@ -202,6 +223,7 @@ private static ArrayList<Customer> customers = Gui03_JoinMembership.getCustomers
 				 */
 				if(obj==bJoin) {//정보 수정 버튼
 
+					
 					lId=tId.getText().trim();
 					Gui03_JoinMembership.getCustomers().get(0).setId(lId);
 					Gui03_JoinMembership.getCustomers().get(0).getId();
