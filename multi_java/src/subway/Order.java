@@ -1,6 +1,9 @@
 package subway;
 
 import javax.swing.*;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -37,13 +40,18 @@ public class Order extends JFrame {
 	JButton btSave, btmypage, btShopping, btbookmark, btlogout;
 	JScrollPane scrollPane;
 
+	JLabel Lblogo, Lbname, Lbline, Lbline2, Lbcheck;
+
+	/** ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거 */
+
 	int count = 1;
 	int total_price = 0;
 	int lastIdx = ShowMainPage.getOrderList().size() - 1;
-
-	// ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거
 	String orderList = ShowMainPage.getOrderList().get(lastIdx).toString().replace("[", "").replace("]", "")
 			.replaceAll(",", "");
+
+	// ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거
+
 
 	/**
 	 * 
@@ -58,26 +66,32 @@ public class Order extends JFrame {
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.getContentPane().setLayout(null);
 
-		btSave = new JButton("저장");
 		btmypage = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
 		btShopping = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\mv주문하기.jpg"));
-		btbookmark = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
+		btbookmark = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\MV주문내역.jpg"));
 		btlogout = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\로그아웃.jpg"));
 		ta = new JTextArea();
+
+		btSave = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\영수증출력.jpg"));
+		Lbcheck = new JLabel("주문하신 전체내역은 <주문내역>에서도 확인할 수 있습니다");
+
 		scrollPane = new JScrollPane();
 		scrollPane.getViewport().add(ta);
 
-		btSave.setBounds(330, 150, 100, 50);
-		scrollPane.setBounds(10, 30, 200, 300);
 		btmypage.setBounds(0, 570, 125, 100); // x, y, 가로, 세로
 		btShopping.setBounds(125, 570, 125, 100);
 		btbookmark.setBounds(250, 570, 125, 100); // x, y, 가로, 세로
-		btlogout.setBounds(375, 570, 125, 100); // x, y, 가로, 세로
-		
+		scrollPane.getViewport().add(ta);
+		btSave.setBounds(150, 450, 200, 30);
+		scrollPane.setBounds(150, 170, 200, 230);
+		Lbcheck.setBounds(80, 410, 400, 30);
+		btlogout.setBounds(375, 570, 125, 100); // x, y, 가로, 세로 (로그아웃bt)
+
 		ta.append(orderList + "총 결제 금액 : " + ShowMainPage.total_price_m());// TextArea에 출력할 내용 저장
 		count++;
 
 		f.getContentPane().add(btSave);
+		f.getContentPane().add(Lbcheck);
 		f.getContentPane().add(scrollPane);
 		f.getContentPane().setBackground(Color.WHITE);
 		f.getContentPane().add(btmypage);
@@ -103,6 +117,22 @@ public class Order extends JFrame {
 		btbookmark.addActionListener(handler);
 		btlogout.addActionListener(handler);
 
+		// 제목라벨 관련
+		Lblogo = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\까페로고.jpg")); // 메뉴선택 라벨 생성
+		Lbname = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\주문내역.jpg")); // 메뉴선택 라벨 생성
+		Lbline = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\선.png")); // 메뉴선택 라벨 생성
+		Lbline2 = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\선.png")); // 메뉴선택 라벨 생성
+
+		Lblogo.setBounds(5, 5, 100, 100); // x, y, 가로, 세로
+		Lbname.setBounds(170, 10, 150, 100); // x, y, 가로, 세로
+		Lbline.setBounds(0, 100, 500, 50); // x, y, 가로, 세로
+		Lbline2.setBounds(0, 480, 500, 50); // x, y, 가로, 세로
+
+		f.getContentPane().add(Lbline);
+		f.getContentPane().add(Lbline2);
+		f.getContentPane().add(Lbname);
+		f.getContentPane().add(Lblogo);
+		f.getContentPane().setBackground(Color.white);
 	}
 
 	/**
@@ -121,8 +151,17 @@ public class Order extends JFrame {
 						printWriter = new PrintWriter("C:\\Users\\park\\git\\java\\order_List.txt");// 파일 저장 경로를 지정
 
 						if (printWriter.checkError() == false) // 파일 저장하는 도중에 에러가 발생하는지 체크, 에러가 발생하면 true 리턴
+						{
 							JOptionPane.showMessageDialog(null, "저장이 완료되었습니다 ! ", "Success",
 									JOptionPane.INFORMATION_MESSAGE);
+							// 널 체크를 위한 명령어, printWriter가 null이라면 NullPointerException 발생
+							for(String a : ShowMainPage.getOrderList())
+							{
+								Objects.requireNonNull(printWriter).println(a);
+							}
+
+							printWriter.close();
+						}
 
 						else
 							JOptionPane.showMessageDialog(null, "저장 실패했습니다 ! ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -137,10 +176,7 @@ public class Order extends JFrame {
 						e1.printStackTrace(); // 에러의 발생근원지를 찾아서 단계별로 에러를 출력
 					}
 
-					// 널 체크를 위한 명령어, printWriter가 null이라면 NullPointerException 발생
-					Objects.requireNonNull(printWriter).println(orderList);
-
-					printWriter.close();
+					
 				}
 			} // if문 끝
 			else if (obj == btlogout) {// 로그아웃하고 로그인화면으로 이동
