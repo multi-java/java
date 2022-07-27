@@ -176,7 +176,7 @@ class ShowJam extends JFrame {
 				new Gui01_Login();
 			} else if (obj == btShopping) { // 메뉴선택으로 이동
 				f.setVisible(false);
-				new ShowMainPage();
+				new ShowMenu();
 			} else if (obj == btbookmark) {// 나만의 메뉴로 이동
 				f.setVisible(false);
 				new BookMark();
@@ -192,13 +192,13 @@ class ShowJam extends JFrame {
 		 */
 		public void showMenu() {
 			menu_price = Menu.getPrice() + Egg.getTopping_price(); // 메뉴의 가격 저장
-			ShowMainPage.setTotal_price(menu_price);
+			Sandwich.setTotal_price(menu_price);
 			order = // 주문한 메뉴의 정보를 저장
-					(Integer.toString(ShowMainPage.getOrderList().size() + 1)) + ". 선택한 메뉴 : " + Menu.getMenu()
+					(Integer.toString(Sandwich.getOrderList().size() + 1)) + ". 선택한 메뉴 : " + Menu.getMenu()
 							+ "\n메뉴 가격 : " + Menu.getPrice() + "\n빵 : " + Bread.getMenu() + "\n토핑 : " + Egg.getMenu()
 							+ "\n토핑 가격 : " + Egg.getTopping_price() + "\n쨈 가격 : " + Jam.getMenu() + "\n총 가격 : "
 							+ Integer.toString(menu_price) + "\n\n====================" + "\n\n";
-			ShowMainPage.setOrderList(order);
+			Sandwich.setOrderList(order);
 		}
 	}
 }

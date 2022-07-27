@@ -195,7 +195,7 @@ class ShowMenu extends JFrame// 메뉴 선택 GUI 출력
 			if (obj == btEgg)// Egg 버튼을 클릭했을 때
 			{
 
-				if (ShowMainPage.getOrderList().size() < 4) { // 선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
+				if (Sandwich.getOrderList().size() < 4) { // 선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
 					Menu.setMenu("Egg");// 메뉴 저장
 					Menu.setPrice(2000);// 메뉴 가격 저장
 					new ShowBread(); // 빵 메뉴 출력
@@ -205,7 +205,7 @@ class ShowMenu extends JFrame// 메뉴 선택 GUI 출력
 							JOptionPane.ERROR_MESSAGE); // 에러창 띄어주기
 				}
 			} else if (obj == btBacon) {
-				if (ShowMainPage.getOrderList().size() < 4) { // 선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
+				if (Sandwich.getOrderList().size() < 4) { // 선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
 					Menu.setMenu("Bacon");
 					Menu.setPrice(3000);
 					f.setVisible(false);
@@ -215,7 +215,7 @@ class ShowMenu extends JFrame// 메뉴 선택 GUI 출력
 							JOptionPane.ERROR_MESSAGE); // 에러창띄어주기
 				}
 			} else if (obj == btCheese) {
-				if (ShowMainPage.getOrderList().size() < 4) { // 선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
+				if (Sandwich.getOrderList().size() < 4) { // 선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
 					Menu.setMenu("Cheese");
 					Menu.setPrice(2500);
 					f.setVisible(false);
@@ -229,7 +229,7 @@ class ShowMenu extends JFrame// 메뉴 선택 GUI 출력
 				new Gui01_Login();
 			} else if (obj == btShopping) { // 메뉴선택으로 이동
 				f.setVisible(false);
-				new ShowMainPage();
+				new Menu();
 			} else if (obj == btbookmark) {// 나만의 메뉴로 이동
 				f.setVisible(false);
 				new BookMark();

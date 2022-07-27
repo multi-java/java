@@ -16,33 +16,33 @@ public class BookMark extends JFrame {// JFrame 상속
 	JLabel total; // 총가격
 
 	public void check() { // 주문내용출력bt에 주문내역을 출력해주는 메소드
-		if (ShowMainPage.getOrderList().size() == 4) { // 리스트 길이는 4개를 기준으로, 부족한 인덱스에 공백을 임의로 부여하여 채워줌
-			bookmark0.setText(ShowMainPage.getOrderList().get(0));
-			bookmark1.setText(ShowMainPage.getOrderList().get(1));
-			bookmark2.setText(ShowMainPage.getOrderList().get(2));
-			bookmark3.setText(ShowMainPage.getOrderList().get(3));
-			total.setText(ShowMainPage.getOrderList().size() + "개 메뉴의 총 가격은 " + ShowMainPage.total + "원 입니다.");
+		if (Sandwich.getOrderList().size() == 4) { // 리스트 길이는 4개를 기준으로, 부족한 인덱스에 공백을 임의로 부여하여 채워줌
+			bookmark0.setText(Sandwich.getOrderList().get(0));
+			bookmark1.setText(Sandwich.getOrderList().get(1));
+			bookmark2.setText(Sandwich.getOrderList().get(2));
+			bookmark3.setText(Sandwich.getOrderList().get(3));
+			total.setText(Sandwich.getOrderList().size() + "개 메뉴의 총 가격은 " + Sandwich.total + "원 입니다.");
 
-		} else if (ShowMainPage.getOrderList().size() == 3) {
-			bookmark0.setText(ShowMainPage.getOrderList().get(0));
-			bookmark1.setText(ShowMainPage.getOrderList().get(1));
-			bookmark2.setText(ShowMainPage.getOrderList().get(2));
+		} else if (Sandwich.getOrderList().size() == 3) {
+			bookmark0.setText(Sandwich.getOrderList().get(0));
+			bookmark1.setText(Sandwich.getOrderList().get(1));
+			bookmark2.setText(Sandwich.getOrderList().get(2));
 			bookmark3.setText("");
-			total.setText(ShowMainPage.getOrderList().size() + "개 메뉴의 총 가격은 " + ShowMainPage.total + "원 입니다.");
+			total.setText(Sandwich.getOrderList().size() + "개 메뉴의 총 가격은 " + Sandwich.total + "원 입니다.");
 
-		} else if (ShowMainPage.getOrderList().size() == 2) {
-			bookmark0.setText(ShowMainPage.getOrderList().get(0));
-			bookmark1.setText(ShowMainPage.getOrderList().get(1));
+		} else if (Sandwich.getOrderList().size() == 2) {
+			bookmark0.setText(Sandwich.getOrderList().get(0));
+			bookmark1.setText(Sandwich.getOrderList().get(1));
 			bookmark2.setText("");
 			bookmark3.setText("");
-			total.setText(ShowMainPage.getOrderList().size() + "개 메뉴의 총 가격은 " + ShowMainPage.total + "원 입니다.");
-		} else if (ShowMainPage.getOrderList().size() == 1) {
-			bookmark0.setText(ShowMainPage.getOrderList().get(0));
+			total.setText(Sandwich.getOrderList().size() + "개 메뉴의 총 가격은 " + Sandwich.total + "원 입니다.");
+		} else if (Sandwich.getOrderList().size() == 1) {
+			bookmark0.setText(Sandwich.getOrderList().get(0));
 			bookmark1.setText("");
 			bookmark2.setText("");
 			bookmark3.setText("");
-			total.setText(ShowMainPage.getOrderList().size() + "개 메뉴의 총 가격은 " + ShowMainPage.total + "원 입니다.");
-		} else if (ShowMainPage.getOrderList().size() < 1) {
+			total.setText(Sandwich.getOrderList().size() + "개 메뉴의 총 가격은 " + Sandwich.total + "원 입니다.");
+		} else if (Sandwich.getOrderList().size() < 1) {
 			bookmark0.setText("");
 			bookmark1.setText("");
 			bookmark2.setText("");
@@ -181,33 +181,33 @@ public class BookMark extends JFrame {// JFrame 상속
 
 				if (click == Drop0)// 삭제버튼을 눌렀을 때
 				{
-					ShowMainPage.total -= ShowMainPage.getTotal_price().get(0);
-					ShowMainPage.getOrderList().remove(0);
+					Sandwich.total -= Sandwich.getTotal_price().get(0);
+					Sandwich.getOrderList().remove(0);
 					check();
 				}
 
 				if (click == Drop1)// 삭제버튼을 눌렀을 때
 				{
-					ShowMainPage.total -= ShowMainPage.getTotal_price().get(1);
-					ShowMainPage.getOrderList().remove(1);
+					Sandwich.total -= Sandwich.getTotal_price().get(1);
+					Sandwich.getOrderList().remove(1);
 					check();
 				}
 				if (click == Drop2)// 삭제버튼을 눌렀을 때
 				{
-					ShowMainPage.total -= ShowMainPage.getTotal_price().get(2);
-					ShowMainPage.getOrderList().remove(2);
+					Sandwich.total -= Sandwich.getTotal_price().get(2);
+					Sandwich.getOrderList().remove(2);
 					check();
 				}
 				if (click == Drop3)// 삭제버튼을 눌렀을 때
 				{
-					ShowMainPage.total -= ShowMainPage.getTotal_price().get(3);
-					ShowMainPage.getOrderList().remove(3);
+					Sandwich.total -= Sandwich.getTotal_price().get(3);
+					Sandwich.getOrderList().remove(3);
 					check();
 				}
 
 				/*
 				 * 2. 메인이동하기버튼 (이벤트처리) if(click==btMain) //메인 버튼 클릭 했을 때 { new
-				 * ShowMainPage();//메인 창 출력 f.setVisible(false); }
+				 * Sandwich();//메인 창 출력 f.setVisible(false); }
 				 */
 
 			} catch (IndexOutOfBoundsException a) {
@@ -219,7 +219,7 @@ public class BookMark extends JFrame {// JFrame 상속
 			}
 			if (click == btShopping) { // 메뉴선택으로 이동
 				f.setVisible(false);
-				new ShowMainPage();
+				new ShowMenu();
 			}
 			if (click == btbookmark) {// 나만의 메뉴로 이동
 				f.setVisible(false);

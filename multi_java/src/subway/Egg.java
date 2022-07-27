@@ -182,7 +182,7 @@ class ShowEgg extends JFrame {
 				new Gui01_Login();
 			} else if (obj == btShopping) { // 메뉴선택으로 이동
 				f.setVisible(false);
-				new ShowMainPage();
+				new ShowMenu();
 			} else if (obj == btbookmark) {// 나만의 메뉴로 이동
 				f.setVisible(false);
 				new BookMark();

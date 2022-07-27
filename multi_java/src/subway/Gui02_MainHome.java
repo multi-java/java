@@ -1,7 +1,7 @@
 package subway;
 
 /** 
- * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션  
+ * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션   
  * 
  * 메인화면 : 로그인 후 네비게이션바 버튼을 통해 다른 기능으로 이동할 수 있는 화면
  * 
@@ -106,7 +106,7 @@ public class Gui02_MainHome extends JFrame {
 			}
 			if (obj == bbMenu) {
 				f.setVisible(false);
-				new ShowMainPage();
+				new ShowMenu();
 			}
 			if (obj == bbMymenu) {
 				f.setVisible(false);

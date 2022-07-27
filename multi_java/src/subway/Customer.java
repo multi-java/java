@@ -1,7 +1,6 @@
 package subway;
 
-/** 회원정보
- *  
+ /**  
  * 객체인 고객에 대한 정보를 멤버변수로 선언하고 캡슐화.
  * - 이름, 생년월일, 아이디, 비밀번호, 연락처
  * 
@@ -14,17 +13,17 @@ package subway;
 public class Customer {
 
 	/** 회원정보를 멤버변수로 선언: 이름, 아이디, 비밀번호,생년월일, 연락처 */
-	private int birthdate;
-	private String name, id, password, phone;
+	private static int birthdate;
+	private static String name, id, password, phone;
 
 	// 생성자
 	public Customer(String name, String id, String password, String phone, int birthdate) {
 		/** 2.클래스에 선언된 멤버변수들을 초기화하는 생성자 */
-		this.name = name;
-		this.id = id;
-		this.password = password;
-		this.phone = phone;
-		this.birthdate = birthdate;
+		Customer.name = name;
+		Customer.id = id;
+		Customer.password = password;
+		Customer.phone = phone;
+		Customer.birthdate = birthdate;
 	}
 
 	/** 멤버변수의 캡술화 */

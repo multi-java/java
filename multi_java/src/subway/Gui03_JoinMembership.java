@@ -1,21 +1,18 @@
 package subway;
 
 /** 
-<<<<<<< HEAD
  * 회원가입 화면
 - 필수 입력 정보가 공백으로 남을 시 경고 창이 뜨며, 다시 입력할 수 있음.
-=======
  * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션  
  * 
  * 회원가입 화면 : 이름, 생년월일, 아이디, 비밀번호, 연락처를 기입하는 회원가입 과정  
  * 
- * 1) 회원가입을 하지않으려면 뒤로가기 버튼을 누르며느 자동으로 로그인 화면으로 이동.
+ * 1) 회원가입을 하지않으려면 뒤로가기 버튼을 누르면 자동으로 로그인 화면으로 이동.
  * 2) 고객정보 저장해서 회원가입
  * 	<1> 필수 입력 정보가 공백으로 남을 경우, 경고 창이 뜨며 다시 입력할 수 있음.
  *  <2> 생년월일이 숫자 입력이 아닐 경우, 경고 창이 뜨며 다시 입력할 수 있음.
  *  <3> 아이디 중복체크하여 이미 가입한 아이디의 경우, 경고 창이 뜨며 다시 입력할 수 있음.
  *  <4> 회원가입하면 고객정보 저장하고 , 자동으로 로그인화면으로 이동
->>>>>>> refs/remotes/origin/Bomi
  * 
  * 작성자: 김보미
  * 작성일: 22-07-27
@@ -36,6 +33,7 @@ public class Gui03_JoinMembership extends JFrame {
 	JLabel laId, laPwd, laName, laPhone, laBirthdate;
 	JLabel laText;
 	Icon iconBack, iconJoin;
+	int count=0;
 
 	/**
 	 * 1. 회원가입한 고객정보를 저장하기위해 ArrayList 생성 및 캡슐화 -findID는 ArrayList에 id가 있는지 확인을 합니다.
@@ -48,6 +46,7 @@ public class Gui03_JoinMembership extends JFrame {
 	/** 2-1) customers(ArrayList)에 같은 아이디를 갖는 객체가 있는지를 확인하는 메서드 */
 	public static boolean findID(String id) {
 		for (int i = 0; i < customers.size(); i++) {
+			Gui03_JoinMembership.getCustomers().get(1).getBirthdate();
 			Customer c = customers.get(i);
 			if (c.getId().equals(id))
 				return true;
@@ -114,7 +113,7 @@ public class Gui03_JoinMembership extends JFrame {
 		pN.setBackground(Color.white);
 
 		/** 북쪽의 pN에 회원가입 로고 */
-		iconJoin = new ImageIcon("joinlogo3.png");
+		iconJoin = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\joinlogo3.png");
 		laText = new JLabel(iconJoin);
 		pN.add(laText);
 
@@ -128,7 +127,7 @@ public class Gui03_JoinMembership extends JFrame {
 
 		/** 뒤로가기 버튼 **/
 		pnN.add(laText);
-		iconBack = new ImageIcon("돌아가기.png");
+		iconBack = new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\돌아가기.png");
 		bBack = new JButton(iconBack);
 		bBack.setBackground(Color.white);
 
@@ -246,7 +245,7 @@ public class Gui03_JoinMembership extends JFrame {
 			/** 5-1)뒤로가기 버튼을 누르면 로그인화면으로 이동 */
 			if (obj == bBack) {
 				new Gui01_Login();
-				p.setVisible(false);
+				f.setVisible(false);
 			}
 			/** 5-2) 회원가입 버튼을 누르면, 절차에 따라 조건 충족 시 회원가입이 완료되고 로그인 화면으로 이동 */
 			if (obj == bJoin) {
@@ -284,7 +283,23 @@ public class Gui03_JoinMembership extends JFrame {
 				 * 위의 3가지 조건에 통과하면, 고객정보를 ArrayList인 customers에 저장하고 회원가입 완료 - 회원가입을 완료하면 자동으로
 				 * 로그인 화면으로 이동
 				 */
+				
+				
 				customers.add(new Customer(name, id, pwd, phone, iBirthDate));
+				for(Customer a : Gui03_JoinMembership.getCustomers())
+				{
+					System.out.println(a.getId());
+					System.out.println(a.getBirthdate());
+					System.out.println(a.getName());
+					System.out.println(a.getPassword());
+					System.out.println(a.getPhone());
+				}
+				
+				
+				
+				
+				
+				
 				JOptionPane.showMessageDialog(p, "회원가입을 축하합니다");
 				f.setVisible(false);
 				new Gui01_Login();

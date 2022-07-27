@@ -140,7 +140,7 @@ public class MP02_Show extends JFrame {
 						new Gui01_Login();			 
 					}else if(obj==bbMenu) { //메뉴선택으로 이동
 						f.setVisible(false);
-						new ShowMainPage();
+						new ShowMenu();
 					}else if(obj==bbMymenu) {//나만의 메뉴로 이동
 						f.setVisible(false);
 						new BookMark();

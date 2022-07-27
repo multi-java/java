@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 /** 
- * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션  
+ * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션   
  * 
  * 로그인 화면: 앱의 첫 화면
  * 
@@ -30,8 +30,8 @@ public class Gui01_Login extends JFrame {
 	JLabel laIcon;
 	Icon iconLogo;
 	static String id;
-
-	/** 2. 프레임에 여백을 주는 메서드 */
+	
+	/**2. 프레임에 여백을 주는 메서드*/
 	@Override
 	public Insets getInsets() {
 		Insets in = new Insets(10, 10, 10, 10);
@@ -127,38 +127,49 @@ public class Gui01_Login extends JFrame {
 	}
 
 	/** 5.로그인 절차 및 회원가입화면 이동에 대한 이벤트 처리 담당 클래스 */
-	class MyEventHandler implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
+	class MyEventHandler implements ActionListener 
+	{
+		public void actionPerformed(ActionEvent e) 
+		{
 			Object obj = e.getSource();
 
 			/** 5-1)회원가입 버튼을 누르면 회원가입 페이지 이동. */
-			if (obj == bJoin) {
+			if (obj == bJoin) 
+			{
 				f.setVisible(false);
 				new Gui03_JoinMembership();
 			}
 
 			/** 5-2)로그인 버튼을 누르거나 엔터쳤을 경우 */
-			if (obj == bLogin || (obj == textId || obj == textPwd)) {
+			if (obj == bLogin || (obj == textId || obj == textPwd)) 
+			{
 				id = textId.getText().trim();
 				String pwd = textPwd.getText().trim();
 
 				try {
 					/** 아이디나 비밀번호에 빈 칸 있을 경우=> NumberFormatException */
-					if (textId == null || textId.getText().equals("")) {
+					if (textId == null || textId.getText().equals("")) 
+					{
 						throw new NullPointerException("아이디가 비었습니다.");
 					}
-					if (textPwd == null || textPwd.getText().equals("")) {
+					if (textPwd == null || textPwd.getText().equals("")) 
+					{
 						throw new NullPointerException("비밀번호가 비었습니다.");
 					}
 					/** 입력 아이디가 저장된 아이디가 아닐 경우=>사용자정의 예외 */
-					if (!Gui03_JoinMembership.findID(id)) {
+					if (!Gui03_JoinMembership.findID(id)) 
+					{
 						textId.setText("");
 						textPwd.setText("");
 						textId.requestFocus();
 						throw new NotSupportedNameException("아이디가 잘못 되었습니다.");
 					}
 					/** 아이디 맞지만, 비빌번로는 틀릴 경우=>사용자정의 예외 */
-					else if (Gui03_JoinMembership.findID(id) && !Gui03_JoinMembership.findID(pwd)) {
+					else if (Gui03_JoinMembership.findID(id) && !Gui03_JoinMembership.findID(pwd)) 
+					{
+						System.out.println(Gui03_JoinMembership.findID(id));
+						System.out.println(Gui03_JoinMembership.findID(pwd));
+						System.out.println();
 						textId.setText("");
 						textPwd.setText("");
 						textId.requestFocus();

@@ -46,8 +46,8 @@ public class Order extends JFrame {
 
 	int count = 1;
 	int total_price = 0;
-	int lastIdx = ShowMainPage.getOrderList().size() - 1;
-	String orderList = ShowMainPage.getOrderList().get(lastIdx).toString().replace("[", "").replace("]", "")
+	int lastIdx = Sandwich.getOrderList().size() - 1;
+	String orderList = Sandwich.getOrderList().get(lastIdx).toString().replace("[", "").replace("]", "")
 			.replaceAll(",", "");
 
 	// ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거
@@ -87,7 +87,7 @@ public class Order extends JFrame {
 		Lbcheck.setBounds(80, 410, 400, 30);
 		btlogout.setBounds(375, 570, 125, 100); // x, y, 가로, 세로 (로그아웃bt)
 
-		ta.append(orderList + "총 결제 금액 : " + ShowMainPage.total_price_m());// TextArea에 출력할 내용 저장
+		ta.append(orderList + "총 결제 금액 : " + Sandwich.total_price_m());// TextArea에 출력할 내용 저장
 		count++;
 
 		f.getContentPane().add(btSave);
@@ -155,7 +155,7 @@ public class Order extends JFrame {
 							JOptionPane.showMessageDialog(null, "저장이 완료되었습니다 ! ", "Success",
 									JOptionPane.INFORMATION_MESSAGE);
 							// 널 체크를 위한 명령어, printWriter가 null이라면 NullPointerException 발생
-							for(String a : ShowMainPage.getOrderList())
+							for(String a : Sandwich.getOrderList())
 							{
 								Objects.requireNonNull(printWriter).println(a);
 							}
@@ -184,7 +184,7 @@ public class Order extends JFrame {
 				new Gui01_Login();
 			} else if (obj == btShopping) { // 메뉴선택으로 이동
 				f.setVisible(false);
-				new ShowMainPage();
+				new ShowMenu();
 			} else if (obj == btbookmark) {// 나만의 메뉴로 이동
 				f.setVisible(false);
 				new BookMark();

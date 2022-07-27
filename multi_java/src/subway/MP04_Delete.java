@@ -91,25 +91,45 @@ public class MP04_Delete extends JFrame {
 
 	}
 
-	class MyEventHandler implements ActionListener {
+	class MyEventHandler implements ActionListener 
+	{
 
 		/**
 		 * 2. 정보 삭제 현재 로그인한 계정의 아이디가 담긴 배열의 정보를 삭제하기 위한 if문
 		 */
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) 
+		{
 			Object obj = e.getSource();
-			if (obj == btDel) {
-				for (int i = 0; i < Gui03_JoinMembership.getCustomers().size(); i++) {
-					if (Gui03_JoinMembership.getCustomers().get(i).getId().equals(Gui01_Login.id)) {
-						Gui03_JoinMembership.getCustomers().remove(i);
+
+			if (obj == btDel) 
+			{
+				int result = JOptionPane.showConfirmDialog(null, "정말 탈퇴하시겠습니까?", "Confirm", JOptionPane.YES_NO_OPTION);
+				if (result == JOptionPane.CLOSED_OPTION) // 예, 아니오 선택 없이 창을 닫은 경우
+				{
+
+				} 
+				else if (result == JOptionPane.YES_OPTION) // 예를 선택한 경우
+				{
+					for (int i = 0; i < Gui03_JoinMembership.getCustomers().size(); i++) 
+					{
+						if (Gui03_JoinMembership.getCustomers().get(i).getId().equals(Gui01_Login.id)) 
+						{
+							Gui03_JoinMembership.getCustomers().remove(i);
+						}
 					}
+					new Gui01_Login();
+					f.setVisible(false);
 				}
-				new Gui01_Login();
-				f.setVisible(false);
-			} else if (obj == btBefore) {
+				else // 아니오를 선택한 경우
+				{
+
+				}
+			}//삭제 버튼 끝 
+			else if (obj == btBefore) 
+			{
 				new MP01_Main();
 				f.setVisible(false);
-			}
+			}//취소 버튼 끝
 
 		}
 
