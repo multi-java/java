@@ -1,14 +1,22 @@
 package subway;
 /** 
- * 회원가입 화면
-- 필수 입력 정보가 공백으로 남을 시 경고 창이 뜨
-며, 다시 입력할 수 있음.
+ * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션 
+ * 
+ * 회원가입 화면 : 이름, 생년월일, 아이디, 비밀번호, 연락처를 기입하는 회원가입 과정  
+ * 
+ * 1) 회원가입을 하지않으려면 뒤로가기 버튼을 눌러 로그인 화면으로 이동.
+ * 2) 회원가입 버튼을 누르면 고객정보 저장해서 회원가입하고, 메인화면으로 이동
+ * 	<1> 필수 입력 정보가 공백으로 남을 경우, 경고 창이 뜨며 다시 입력할 수 있음.
+ *  <2> 생년월일이 숫자 입력이 아닐 경우, 경고 창이 뜨며 다시 입력할 수 있음.
+ *  <3>  아이디 중복체크하여 이미 가입한 아이디의 경우, 경고 창이 뜨며 다시 입력할 수 있음.
  * 
  * 작성자: 김보미
- * 작성일: 22-07-23
+ * 작성일: 22-07-26
  * 버전: 1.1
  */
-import javax.swing.*;   
+
+
+import javax.swing.*;    
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -20,98 +28,82 @@ public class Gui03_JoinMembership extends JFrame {
 	JTextField tId, tPwd, tName,tPhone, tBirthdate; 
 	JLabel laId, laPwd, laName,laPhone, laBirthdate;
 	JLabel laText;
-	Icon iconBack;
+	Icon iconBack,iconJoin;
 	
 	
-	/** 1. 회원가입한 고객정보를 저장하기위해 ArrayList 생성 및 캡슐화 
-	 * -findID는 ArrayList에 id가 있는지 확인을 합니다. 
-	 * -findIDPW는 ArrayList에 id, pw가 있는지 확인을 해서 로그인 가능여부를 확인합니다.
+	/** 회원가입한 고객정보를 저장하기 위해 ArrayList 생성 및 캡슐화 
+	 * -findID, findPW, findIDPW를 통해 
+	 *  ArrayList에 id, pw가 있는지 확인을 해서 로그인 가능여부를 확인합니다.
 	 * */
 	
 	/**1.회원가입한 고객정보를 저장하기위한 ArrayList*/
-private static ArrayList<Customer> customers = new ArrayList<Customer>();
-	
-	public static boolean findID(String id) {
-		for (int i=0; i<customers.size(); i++) {
-			Customer c = customers.get(i);
-			if (c.getId().equals(id)) return true;
+	private static ArrayList<Customer> customers = new ArrayList<Customer>();
+		
+		/**1-1)  ArrayList에 아이디가 있는지 확인하는 findID*/
+		public static boolean findID(String id) {
+			for (int i=0; i<customers.size(); i++) {
+				Customer c = customers.get(i);
+				if (c.getId().equals(id)) return true;
+			}
+			return false;
 		}
-		return false;
-	}
-	public static boolean findPW(String pw) {
-		for (int i=0; i<customers.size(); i++) {
-			Customer c = customers.get(i);
-			if (c.getPassword().equals(pw)) return true;
+		/**1-2)  ArrayList에 비밀번호가 있는지 확인하는 findID*/
+		public static boolean findPW(String pw) {
+			for (int i=0; i<customers.size(); i++) {
+				Customer c = customers.get(i);
+				if (c.getPassword().equals(pw)) return true;
+			}
+			return false;
 		}
-		return false;
-	}
-	public static boolean findIDPW(String id, String pw) {
-		for (int i=0; i<customers.size(); i++) {
-			Customer c = customers.get(i);
-			if (c.getId().equals(id) && c.getPassword().equals(pw)) return true;
+		/**1-3)  ArrayList에 아이디와 비밀번호가 있는지 확인하는 findIDPW*/
+		public static boolean findIDPW(String id, String pw) {
+			for (int i=0; i<customers.size(); i++) {
+				Customer c = customers.get(i);
+				if (c.getId().equals(id) && c.getPassword().equals(pw)) return true;
+			}
+			return false;
 		}
-		return false;
-	}
-
-	
-	public static ArrayList<Customer> getCustomers() {
-		return customers;
-	}
-	
-	public static void setCustomers(Customer customers) {
-		Gui03_JoinMembership.customers.add(customers);
-	}
+		
+		/**1-4) ArrayList 캡슐화*/
+		public static ArrayList<Customer> getCustomers() {
+			return customers;
+		}
+		
+		public static void setCustomers(Customer customers) {
+			Gui03_JoinMembership.customers.add(customers);
+		}
 
 
-	/** 오버라이드: 컨테이너의 바깥 여백을 주는 메서드*/
+		/**2. 컨테이너의 바깥 여백을 주는 메서드를 오버라이드*/
 		@Override
 		public Insets getInsets () {
 			Insets in=new  Insets(10,10,10,10);
 			return in;
 		}
 		
+		/**3. 회원가입 화면구성에 대한 생성자*/
 		public Gui03_JoinMembership() {
 			
-			super(":: Toast House App v1.1 ");
+			super(":: Cafe7 App v1.1 ");
 			
-			/**2.전체 패널(p)를  BorderLayout구성*/
+			/**3-1)전체 패널(p)를  BorderLayout구성 : pC(중앙), pS(남쪽), pN(북쪽)*/
 			p=new JPanel(new BorderLayout(10, 10));
-
 			p.setBackground(Color.white);
-
 			p.add(pC=new JPanel(),"Center");
-
 			pC.setBackground(Color.white);
 			
-			// pN의 위쪽으로 여백이 생기도록 pN의 레이아웃을 BorderLayout으로 설정한다.
+			/**3-2) 북쪽의 pN: 회원가입 로고와 뒤로가기 버튼 부착
+			 - 위쪽으로 여백이 생기도록 pN의 레이아웃을 BorderLayout으로 설정*/
 			p.add(pN=new JPanel(new BorderLayout()),"North"); 
-
 			pN.setBackground(Color.white);
 
-			// pS의 아래쪽에 여백이 생기도록 GridLayout으로 설정한다.
-			p.add(pS=new JPanel(new GridLayout(2, 1)),"South"); 
 
-			pS.setBackground(Color.white);
 			
-			p.add(new JLabel("   "), "East");
-			
-			/**3. 북쪽의 pN에 회원가입문구 */
-			laText=new JLabel("회원가입"); 
-			laText.setHorizontalTextPosition(JLabel.CENTER);
-			laText.setVerticalTextPosition(JLabel.TOP);
-			laText.setFont(new Font("sans-serif",Font.BOLD,28));
+			/**3-3) 북쪽의 pN에 회원가입 이미지 */
+			iconJoin=new ImageIcon("joinlogo3.png"); 
+			laText=new JLabel(iconJoin); 
 			pN.add(laText); 
 			
-			
-			/**2. 북쪽의 pN에 회원가입문구 */
-
-			laText=new JLabel("회원가입"); 
-
-			laText.setHorizontalTextPosition(JLabel.CENTER);
-
-			laText.setVerticalTextPosition(JLabel.TOP);
-
-			laText.setFont(new Font("sans-serif",Font.BOLD,28));
 			
 			// pN의 레이아웃은 BorderLayout이고 이 패널의 가운데에 pnN을 새로 넣는다.
 			// pN의 위쪽에 여백이 생기도록 하기 위함이다.
@@ -126,7 +118,7 @@ private static ArrayList<Customer> customers = new ArrayList<Customer>();
 
 			pnN.add(laText); 
 			
-			iconBack=new ImageIcon("back.png");
+			iconBack=new ImageIcon("back2.png");
 			
 			bBack=new JButton(iconBack);
 
@@ -230,6 +222,11 @@ private static ArrayList<Customer> customers = new ArrayList<Customer>();
 			pn10.setBackground(Color.white);
 			pn10.add(tPhone);
 			pC.add(pn10);
+			
+			// pS의 아래쪽에 여백이 생기도록 GridLayout으로 설정한다.
+						p.add(pS=new JPanel(new GridLayout(2, 1)),"South"); 
+						pS.setBackground(Color.white);
+						p.add(new JLabel("   "), "East");
 			
 			
 /**4.남쪽의 pS에 회원가입, 뒤로 버튼*/ //이전버튼을 제목옆에 위로 올리기
