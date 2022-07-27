@@ -16,7 +16,8 @@ public class Customer {
 	private String name, id, password, phone  ;//이름, 아이디, 비밀번호, 연락처
 		
 	//생성자 
-	public Customer(String name, String id, String password, String phone, int birthdate){
+	public Customer(String name, String id, String password, String phone, int birthdate)
+	{
 		this.name = name;
 		this.id = id;
 		this.password = password;
@@ -24,48 +25,55 @@ public class Customer {
 		this.birthdate = birthdate;
 	}
 	
-	
-	
-	
-	public String getName() {
+	public String getName() 
+	{
 		return name;
 	}
-	public int getBirthdate() {
+	
+	public int getBirthdate() 
+	{
 		return birthdate;
 	}
-	public String getId() {
+	
+	public String getId() 
+	{
 		return id;
 	}
-	public String getPassword() {
+	
+	public String getPassword() 
+	{
 		return password;
 	}
-	public String getPhone() {
+	
+	public String getPhone() 
+	{
 		return phone;
 	}
 
 	
 	
-	public void setName(String name) {
+	public void setName(String name) 
+	{
 		this.name = name;
 	}
-	public void setBirthday(int birthdate) {
+	
+	public void setBirthday(int birthdate) 
+	{
 		this.birthdate = birthdate;
 	}
-	public void setId(String id) {
+	
+	public void setId(String id) 
+	{
 		this.id = id;
 	}
-	public void setPassword(String password) {
+	
+	public void setPassword(String password) 
+	{
 		this.password = password;
 	}
-	public void setPhone(String phone) {
+	
+	public void setPhone(String phone) 
+	{
 		this.phone = phone;
 	}
-	
-
-	
-			
-	
-			
-	
-	
 }

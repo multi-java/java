@@ -14,5 +14,4 @@ public class NotSupportedNameException extends Exception {
 	public NotSupportedNameException(String msg){ 
 		super(msg);
 	}
-
 }

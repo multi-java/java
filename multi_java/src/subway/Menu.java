@@ -6,6 +6,28 @@ import java.awt.Image;
 import java.awt.event.*;
 
 
+/** 
+ * 환경을 고려해 스마트팜을 통한 무농약 식재료로 만든 토스트 판매 애플리케이션
+ * 
+ * 토스트 메뉴 선택 화면
+ * 
+ * 1) 사용자는 메뉴 선택 버튼을 통해 화면이 들어올 수 있다.
+ * 2) 메뉴는 총 3가지로 구성되어 있다.
+ * 3) 이전 페이지로 돌아가는 버튼, 메뉴를 선택할 수 있는 버튼, 하단에는 네비게이션 바(my페이지, 주문하기, 즐겨찾기, 로그아웃)으로 구성되어 있다.
+ * 	<1> 메뉴를 클릭하면 선택한 메뉴의 빵을 선택할 수 있는 페이지로 연결된다.
+ * 	<2> 메뉴 주문은 총 4개까지 할 수 있으며, 4개를 초과하면 메뉴 선택을 할 수 없다.
+ * 
+ *  
+ * @author 박상환
+ * 작성일: 22-07-27
+ */
+
+
+/**
+ * 추상 클래스인 Sandwich 클래스를 상속받는 클래스
+ * @author 박상환
+ *
+ */
 public class Menu extends Sandwich
 {
 	private static String menu;
@@ -34,16 +56,26 @@ public class Menu extends Sandwich
 	}
 	
 }
+
+
+/**
+ * 메뉴 화면을 출력하기 위한 클래스
+ * @author 박상환
+ *
+ */
 class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 {
 	JFrame f = new JFrame();
 	JPanel p = new JPanel();
-	JButton btEgg,btBacon,btCheese,btMain,btBefore,btNext,btmypage, btbookmark;
+	JButton btEgg,btBacon,btCheese,btBefore,btNext,btmypage,btShopping,btbookmark,btlogout;
 	JLabel Lblogo, Lbline, Lbname,lbMenu;
 	ImageIcon img,img2,img3;
 	
 	
-
+	/**
+	 * 생성자
+	 * 화면에 들어갈 버튼, 라벨 등에 대해 설정하고 화면에 추가해준다.
+	 */
 	public ShowMenu()
 	{
 		f.setSize(500,700);
@@ -98,11 +130,6 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		  f.getContentPane().add(btCheese);
 		  f.getContentPane().add(btBacon);
 		 
-		//p.add(pTitle,"North");
-		//p.add(pContent,"Center");
-		//p.add(pNavi,"South");
-		
-		
 
 		//////////// 5. 메뉴선택(lb)
 		lbMenu = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\메뉴를 골라주세요.jpg")); //메뉴선택 라벨 생성
@@ -111,31 +138,39 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		
 		
 		////////////6. 이동(bt)	
-		btMain = new JButton("메인"); //이동버튼 생성
+	      btmypage = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
+	      btShopping = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\mv주문하기.jpg"));
+	      btbookmark = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
+	      btlogout = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\로그아웃.jpg"));
 		btBefore = new JButton("",(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\돌아가기.png")));
-		btbookmark = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
-		btmypage = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
 		
-		btMain.setBounds(700, 700, 100, 50); //이동버튼 사이즈
+		
 		btBefore.setBounds(380, 10, 100, 100);
-		btbookmark.setBounds(0, 550, 125, 100);
-		btmypage.setBounds(125, 550, 125, 100);
+	      btmypage.setBounds(0, 570, 125, 100); //x, y, 가로, 세로
+	      btShopping.setBounds(125,570,125,100);
+	      btbookmark.setBounds(250, 570, 125, 100); //x, y, 가로, 세로
+	      btlogout.setBounds(375, 570, 125, 100); //x, y, 가로, 세로
 
 		
 
-		f.getContentPane().add(btMain); //이동버튼 붙이기
 		f.getContentPane().add(btBefore);
-		f.getContentPane().add(btbookmark);		
-		f.getContentPane().add(btmypage);	
 		f.getContentPane().setBackground(Color.white);
+	      f.getContentPane().add(btmypage);   
+	      f.getContentPane().add(btShopping);
+	      f.getContentPane().add(btbookmark);   
+	      f.getContentPane().add(btlogout);   
 		
 		
 		btBefore.setBackground(Color.white); //이동버튼(bt) 테두리 없애기
 		btBefore.setBorderPainted(false);
-		btbookmark.setBackground(Color.white);
-		btbookmark.setBorderPainted(false);
-		btmypage.setBackground(Color.white);
-		btmypage.setBorderPainted(false);
+	      btmypage.setBackground(Color.white);
+	      btmypage.setBorderPainted(false);
+	      btShopping.setBackground(Color.white);
+	      btShopping.setBorderPainted(false);
+	      btbookmark.setBackground(Color.white);
+	      btbookmark.setBorderPainted(false);
+	      btlogout.setBackground(Color.white);
+	      btlogout.setBorderPainted(false);
 
 		
 		
@@ -147,21 +182,26 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		1. 메뉴사진(bt)
 		2. 이동(bt)
 		*/
-			
+	      
+	      
 		MyEventHandler handler = new MyEventHandler();
 	
 		////////////1. 메뉴사진(bt)
-	btEgg.addActionListener(handler);
-	btBacon.addActionListener(handler);
-	btCheese.addActionListener(handler);
+		btEgg.addActionListener(handler);
+		btBacon.addActionListener(handler);
+		btCheese.addActionListener(handler);
 		
 	
 		////////////2. 이동(bt) 
-	btMain.addActionListener(handler);}
+	}//생성자 끝
 	
 	
-	
-	class MyEventHandler implements ActionListener	/**버튼을 클릭하면 발생하는 클래스*/
+	/**
+	 * 버튼 클릭과 같은 이벤트가 발생되었을 때 이벤트를 처리하는 클래스 
+	 * @author 박상환
+	 *
+	 */
+	class MyEventHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
@@ -170,7 +210,8 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 		//////////////1-1. 메뉴 사진 버튼
 			if(obj==btEgg)//Egg 버튼을 클릭했을 때
 			{
-				if (ShowMainPage.getOrderList().size()<4){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
+				
+				if (ShowMainPage.getOrderList().size()<4){ 		//선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
 					Menu.setMenu("Egg");//메뉴 저장
 					Menu.setPrice(2000);//메뉴 가격 저장
 					new ShowBread();	//빵 메뉴 출력
@@ -178,14 +219,14 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null,"주문은 4개까지만 가능합니다 !","ERROR_MESSAGE",JOptionPane.ERROR_MESSAGE); //에러창띄어주기
+					JOptionPane.showMessageDialog(null,"주문은 4개까지만 가능합니다 !","ERROR_MESSAGE",JOptionPane.ERROR_MESSAGE); //에러창 띄어주기
 				}
 			}
 			else if(obj==btBacon)
 			{
 				if 
 				(
-					ShowMainPage.getOrderList().size()<4){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
+					ShowMainPage.getOrderList().size()<4){ 		//선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
 					Menu.setMenu("Bacon");
 					Menu.setPrice(3000);
 					f.setVisible(false);
@@ -199,7 +240,7 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 			else if(obj==btCheese)
 			{	
 				if (
-						ShowMainPage.getOrderList().size()<4){ 		//4개이하면 받고, 4개이상이면 에러창띄어주기
+						ShowMainPage.getOrderList().size()<4){ 		//선택한 메뉴가 4개 이하면 주문이 가능하도록, 4개 이상이면 불가능하도록 에러창띄어주기
 						Menu.setMenu("Cheese");
 						Menu.setPrice(2500);
 						f.setVisible(false);
@@ -211,12 +252,6 @@ class ShowMenu extends JFrame//메뉴 선택 GUI 출력
 				}
 			}
 			
-			///////////////2-1. 이동 버튼
-			else if(obj==btMain)	/**메인 버튼 클릭 했을 때*/
-			{
-				new ShowMainPage();		/**메인 창 출력*/
-				f.setVisible(false);
-			}
-		}
-	}
-}
+		}//actionPerformed 끝
+	}//핸들러 끝
+}//클래스 끝

@@ -7,19 +7,50 @@ import java.io.*;
 import java.io.FileNotFoundException;
 import java.util.Objects;
 
+/** 
+ * 환경을 고려해 스마트팜을 통한 무농약 식재료로 만든 토스트 판매 애플리케이션
+ * 
+ * 선택한 메뉴의 내역 출력 화면
+ * 
+ * 1) 쨈까지 선택하면 선택한 메뉴의 내역을 알 수 있는 화면으로 넘어온다.
+ * 2) 자신이 선택한 메뉴, 빵, 토핑, 쨈이 텍스트 형식으로 출력이 된다.
+ * 3) 주문한 내역을 텍스트 파일로 저장할 수 있다.
+ * 4) 주문한 내역을 텍스트파일로 저장할 수 있는 버튼, 하단에는 네비게이션 바(my페이지, 주문하기, 즐겨찾기, 로그아웃)으로 구성되어 있다.
+ * 	<1> 저장 버튼을 클릭했을 때 성공적으로 저장이 된다면 저장이 완료되었습니다라는 메시지가 출력된다.
+ * 		<1-1> 어떠한 예외로 인해 실패한다면 저장이 실패했습니다라는 메시지가 출력된다.
+ *  
+ * @author 박상환
+ * 작성일: 22-07-27
+ */
+
+/**
+ * 
+ * 선택한 메뉴 내역을 출력하기 위한 클래스
+ * @author 박상환
+ *
+ */
 public class Order extends JFrame
 {
 	JFrame f = new JFrame();
 	JTextArea ta;
-	JButton btMain,btSave;
+	JButton btSave;
 	JScrollPane scrollPane;
-	
-	/**ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거*/
 	
 	int count = 1;
 	int total_price = 0;
 	int lastIdx = ShowMainPage.getOrderList().size() - 1;
+	
+	//ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거
 	String orderList = ShowMainPage.getOrderList().get(lastIdx).toString().replace("[","").replace("]", "").replaceAll(",", "");
+	
+	
+	/**
+	 * 
+	 * 생성자
+	 * 버튼이나 라벨과 같은 요소들을 정의하고 프레임에 추가시켜준다.
+	 * @author 박상환
+	 * 
+	 */
 	public Order()
 	{
 		f.setSize(500,700);
@@ -28,72 +59,72 @@ public class Order extends JFrame
 		f.getContentPane().setLayout(null);
 		
 		
-		btMain = new JButton("메인페이지");
 		btSave = new JButton("저장");
 		ta=new JTextArea();
 		scrollPane = new JScrollPane();
         scrollPane.getViewport().add(ta);
 		
         
-		btMain.setBounds(330, 30, 100, 50);
 		btSave.setBounds(330, 150, 100, 50);
 		scrollPane.setBounds(10, 30, 200, 300);
 		
-		ta.append(orderList+"총 결제 금액 : "+ShowMainPage.getTotal_price());/**TextArea에 출력할 내용 저장*/
+		ta.append(orderList+"총 결제 금액 : "+ShowMainPage.getTotal_price());//TextArea에 출력할 내용 저장
 		count++;
 		
 		
-		f.getContentPane().add(btMain);
 		f.getContentPane().add(btSave);
 		f.getContentPane().add(scrollPane);
 		f.getContentPane().setBackground(Color.WHITE);
-	    ta.setEditable(false);						/**Textarea에 값 입력 못하게 설정*/
+	    ta.setEditable(false);						//Textarea에 값 입력 못하게 설정
 		f.setVisible(true);
 		
 		
 		MyEventHandler handler = new MyEventHandler();
-		btMain.addActionListener(handler);
 		btSave.addActionListener(handler);
 	}
+	
+	
+	/**
+	 * 이벤트 핸들러
+	 * 버튼 클릭과 같은 이벤트가 발생하면 이벤트 처리를 담당하는 클래스
+	 * @author 박상환
+	 *
+	 */
 	class MyEventHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
 		{
 			Object obj = e.getSource();
-			if(obj==btMain)
+			if(obj==btSave)
 			{
-				new ShowMainPage();	
-				f.setVisible(false);
-			}
-			else if(obj==btSave)
-			{
-				PrintWriter printWriter = null;	/**문자열을 파일에 저장하기 위해 printWriter를 사용*/
+				PrintWriter printWriter = null;	//문자열을 파일에 저장하기 위해 printWriter를 사용
 		        {
 		            try 
 		            {
-		                printWriter = new PrintWriter("C:\\Users\\park\\git\\java\\order_List.txt");/**파일 저장 경로를 지정*/
+		                printWriter = new PrintWriter("C:\\Users\\park\\git\\java\\order_List.txt");//파일 저장 경로를 지정
 		                
-		                if(printWriter.checkError()==false)	/**파일 저장하는 도중에 에러가 발생하는지 체크, 에러가 발생하면 true 리턴*/
+		                if(printWriter.checkError()==false)	//파일 저장하는 도중에 에러가 발생하는지 체크, 에러가 발생하면 true 리턴
 				            JOptionPane.showMessageDialog(null,"저장이 완료되었습니다 ! ","Success",JOptionPane.INFORMATION_MESSAGE);
 		                
 		                else	
 				            JOptionPane.showMessageDialog(null,"저장 실패했습니다 ! ","Error",JOptionPane.ERROR_MESSAGE);
 		            } 
 		            
-		            catch (FileNotFoundException e1) /**문자열이 존재하지 않거나 파일을 만들 수 없거나 파일을 열거나 만드는 동안 다른 오류가 발생하면*/
+		            catch (FileNotFoundException e1) //문자열이 존재하지 않거나 파일을 만들 수 없거나 파일을 열거나 만드는 동안 다른 오류가 발생하면
 		            {
 		            	JOptionPane.showMessageDialog(null,e1.getMessage());
 		            }
 		            
-		            catch (IOException e1) {	/**입출력 예외 처리*/
-		    			e1.printStackTrace();	/**에러의 발생근원지를 찾아서 단계별로 에러를 출력*/
+		            catch (IOException e1) {	//입출력 예외 처리
+		    			e1.printStackTrace();	//에러의 발생근원지를 찾아서 단계별로 에러를 출력
 		    		}
 		            
-		        	/**널 체크를 위한 명령어, printWriter가 null이라면 NullPointerException 발생*/
+		        	//널 체크를 위한 명령어, printWriter가 null이라면 NullPointerException 발생
 		            Objects.requireNonNull(printWriter).println(ShowMainPage.getOrderList().toString().replace("[","").replace("]", "").replaceAll(",", ""));
+		            
 		            printWriter.close();
 		        }
-			}
-		}
-	}
-}
+			}//if문 끝
+		}//actionperformed 끝
+	}//핸들러 끝
+}// 클래스 끝
