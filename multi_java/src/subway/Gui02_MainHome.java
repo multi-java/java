@@ -1,6 +1,6 @@
 package subway;
 /** 
- * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션 
+ * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션  
  * 
  * 메인화면 : 로그인 후 네비게이션바 버튼을 통해 다른 기능으로 이동할 수 있는 화면
  * 
@@ -12,23 +12,23 @@ package subway;
  * 4)마이페이지 버튼을 누르면, 마이페이지로 이동
  * 
  * 작성자: 김보미
- * 작성일: 22-07-26
+ * 작성일: 22-07-27
  * 버전: 1.1
  */
-import javax.swing.*; 
+import javax.swing.*;  
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-/**1.메인 화면에 대한 클래스*/
+/**1.메인홈 화면에 대한 클래스*/
 public class Gui02_MainHome extends JFrame{
-	JFrame f = new JFrame();
+	JFrame f = new JFrame(":: Cafe7 App v1.1 ");
 	JPanel p,pS,pC; 
 	JButton bbMypage, bbMenu, bbMymenu,bbLogout; 
 	JLabel laIcon, laWelcome;
 	Icon iconMenu, iconMymenu,iconMypage, iconLogout, iconLogo, iconWelcome;
 
-	/**2. 컨테이너의 바깥 여백을 주는 메서드를 오버라이드*/
+	/**2. 프레임에 여백을 주는 메서드*/
 	@Override
 	public Insets getInsets () { 
 		Insets in=new  Insets(10,10,10,10);
@@ -50,19 +50,19 @@ public class Gui02_MainHome extends JFrame{
 		/**3-2) 남쪽의 pS를 GridLayout으로 분할해, 아이콘 버튼 생성 */
 		pS.setLayout(new GridLayout(1,4));
 		
-		iconMymenu=new ImageIcon("mymenu2.png");
-		iconMenu=new ImageIcon("menu.png");
-		iconMypage=new ImageIcon("mypage2.png");
-		iconLogout=new ImageIcon("logout.png");
+		iconMymenu=new ImageIcon("주문내역.jpg");
+		iconMenu=new ImageIcon("mv주문하기.jpg");
+		iconMypage=new ImageIcon("마이페이지.jpg");
+		iconLogout=new ImageIcon("로그아웃.jpg");
 		
 		bbMypage=new JButton(iconMypage );
-		bbMypage.setBackground(Color.white);
+		bbMypage.setBackground(Color.black);
 		bbMenu=new JButton( iconMenu);
-		bbMenu.setBackground(Color.white);
+		bbMenu.setBackground(Color.black);
 		bbMymenu=new JButton(iconMymenu);
-		bbMymenu.setBackground(Color.white);
+		bbMymenu.setBackground(Color.black);
 		bbLogout=new JButton(iconLogout);
-		bbLogout.setBackground(Color.white);
+		bbLogout.setBackground(Color.black);
 
 		pS.add(bbMypage);
 		pS.add(bbMenu);
@@ -106,15 +106,15 @@ public class Gui02_MainHome extends JFrame{
 				}
 			if(obj==bbMenu) { 
 				f.setVisible(false);
-				//new main.ShowMainPage();
+				new main.ShowMainPage();
 			}
 			if(obj==bbMymenu) {
 				f.setVisible(false);
-				//new main.BookMark();
+				new main.BookMark();
 			}
 			if(obj==bbMypage) {
 				f.setVisible(false);
-				//new MP01_Main();
+				new MP01_Main();
 			}
 			
 		}
