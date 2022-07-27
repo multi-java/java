@@ -141,6 +141,11 @@ class ShowBread extends JFrame
 		btMilk.addActionListener(handler);
 		btChestnut.addActionListener(handler);
 		btBefore.addActionListener(handler);
+	    btmypage.addActionListener(handler); 
+	    btShopping.addActionListener(handler); 
+	    btbookmark.addActionListener(handler); 
+	    btlogout.addActionListener(handler); 
+
 	}//생성자 끝
 	
 	/**
@@ -175,6 +180,22 @@ class ShowBread extends JFrame
 				f.setVisible(false);
 				new ShowMenu();		//이전 창 출력
 			}
+			else if(obj==btlogout) {//로그아웃하고 로그인화면으로 이동
+				f.setVisible(false);
+				new Gui01_Login();			 
+				}
+			else if(obj==btShopping) { //메뉴선택으로 이동
+				f.setVisible(false);
+				new ShowMainPage();
+				}
+			else if(obj==btbookmark) {//나만의 메뉴로 이동
+				f.setVisible(false);
+				new BookMark();
+				}
+			else if(obj== btmypage) {//마이페이지로 이동
+				f.setVisible(false);
+				new MP01_Main();
+				}
 		}//actionperformed 끝
 	}//핸들러 끝
 }//클래스 끝
