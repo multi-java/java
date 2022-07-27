@@ -124,7 +124,7 @@ public class Gui01_Login  extends JFrame {
       bJoin.addActionListener(handler);
             
       /**3-5)전체 프레임 f에 전체 패널p를 배치. 크기설정, 시각화 구현 및 창닫기 처리*/
-      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       f.add(p);
       f.setVisible(true);
       f.setSize(500,700);
@@ -150,7 +150,7 @@ public class Gui01_Login  extends JFrame {
       /**5-2)로그인 버튼을 누르거나 엔터쳤을 경우 */
       if(obj==bLogin || (obj==textId || obj==textPwd)) 
       {
-         String id=textId.getText().trim();
+         id=textId.getText().trim();
          String pwd=textPwd.getText().trim(); 
    
          try {

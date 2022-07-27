@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.Color;
 import java.awt.event.*;
 
+/**
+ * 
+ * @author 손하은
+ * 작성일 : 2022-07-28
+ */
 public class BookMark extends JFrame {// JFrame 상속
 
 	JFrame f = new JFrame(); // 프레임
@@ -68,13 +73,12 @@ public class BookMark extends JFrame {// JFrame 상속
 		 * 주문내역을 삭제할 수 있는 bt 표시
 		 * 5.총가격 => 4개 주문내역의 총 가격 표시
 		 * 
-		 * @author 손하은
-		 * 작성일 : 2022-07-28
+		 * 
 		 **/
 
 		//////////// 1.(공통GUI) 상단 ////////////
 		Lblogo = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\까페로고.jpg")); // 까페로고 생성
-		Lbname = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\주문내역.jpg")); // 페이지이름("주문내역")
+		Lbname = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\lb주문내역.jpg")); // 페이지이름("주문내역")
 																										// 생성
 		Lbline = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\선.png")); // 레이아웃선 생성
 
@@ -91,7 +95,7 @@ public class BookMark extends JFrame {// JFrame 상속
 		btmypage = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\마이페이지.jpg")); // 마이페이지
 																												// bt
 		btShopping = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\mv주문하기.jpg")); // 주문하기bt
-		btbookmark = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\MV주문내역.jpg")); // 주문내역bt
+		btbookmark = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\주문내역.jpg")); // 주문내역bt
 		btlogout = new JButton("", new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\로그아웃.jpg")); // 로그아웃bt
 
 		btmypage.setBounds(0, 570, 125, 100); // x, y, 가로, 세로 (마이페이지bt)

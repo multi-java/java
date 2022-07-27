@@ -14,10 +14,11 @@ public class MP02_Show extends JFrame {
 	JFrame f=new JFrame();
 	JPanel p,pC,pS,pN;
 	JButton bbMypage, bbMenu, bbMymenu,bbLogout;
-	JLabel laId, laPwd,laName,laPhone, laBirthdate;
+	JLabel Lblogo,laId, laPwd,laName,laPhone, laBirthdate;
 	JLabel title;
 	Icon titleLogo;
 	Icon iconMenu, iconMymenu,iconMypage, iconLogout;
+	
 	
 	
 	@Override
@@ -44,7 +45,8 @@ public class MP02_Show extends JFrame {
 		pS.setBackground(Color.white);
 		
 		/**1.1 마이페이지 타이틀*/
-		titleLogo=new ImageIcon("image/MyPage.jpg");
+		titleLogo=new ImageIcon("image/MY페이지.jpg");
+		Lblogo = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\까페로고.jpg"));
 		title=new JLabel(titleLogo);
 		pN.add(title);
 
@@ -65,7 +67,8 @@ public class MP02_Show extends JFrame {
 		bbMymenu.setBackground(Color.white);
 		bbLogout=new JButton(iconLogout);
 		bbLogout.setBackground(Color.white);
-				
+		Lblogo.setBounds(5, 5, 100, 100);
+		f.getContentPane().add(Lblogo); // 까페로고 패널 위 붙이기
 		pS.add(bbMypage);
 		pS.add(bbMenu);
 		pS.add(bbMymenu);
@@ -86,12 +89,11 @@ public class MP02_Show extends JFrame {
 		String b="";
 		int c=0;
 		String d="";
-		int i=0;
 		
 		/**
 		 * 2.1 로그인한 아이디와 일치하는 정보를 가진 배열을 탐색하는 for루프
 		 */
-		for(;i<Gui03_JoinMembership.getCustomers().size();i++) {
+		for(int i=0;i<Gui03_JoinMembership.getCustomers().size();i++) {
 			if(Gui03_JoinMembership.getCustomers().get(i).getId().equals(Gui01_Login.id))
 			{
 				a=Gui03_JoinMembership.getCustomers().get(i).getPassword();

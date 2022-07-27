@@ -70,7 +70,7 @@ class ShowBread extends JFrame
 		f.getContentPane().setLayout(null);				//프레임을 화면 가운데에 배치
 	      btmypage = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
         btShopping = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\mv주문하기.jpg"));
-        btbookmark = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\MV주문내역.jpg"));
+        btbookmark = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\주문내역.jpg"));
         btlogout = new JButton("",new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\로그아웃.jpg"));
 	            
 	           

@@ -13,10 +13,9 @@ public class MP01_Main extends JFrame {
 	JFrame f=new JFrame();
 	JPanel p,pN,pC,pS;
 	JButton bbMypage, bbMenu, bbMymenu,bbLogout,sMember,cMember,dMember;
-	JLabel title;
+	JLabel Lblogo,title;
 	Icon titleLogo;
 	Icon iconMenu, iconMymenu,iconMypage, iconLogout;
-	
 	@Override
 	public Insets getInsets () { 
 		Insets in=new  Insets(10,10,10,10);
@@ -41,9 +40,10 @@ public class MP01_Main extends JFrame {
 		pN.setBackground(Color.white);
 		p.add(pS=new JPanel(),"South"); 
 		pS.setBackground(Color.white);
+		Lblogo = new JLabel(new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\까페로고.jpg"));
 		
 		/**1.1 마이페이지 타이틀*/
-		titleLogo=new ImageIcon("image/MyPage.jpg");
+		titleLogo=new ImageIcon("C:\\Users\\park\\git\\java\\multi_java\\Image\\MY페이지.jpg");
 		title=new JLabel(titleLogo);
 		pN.add(title);
 
@@ -64,11 +64,13 @@ public class MP01_Main extends JFrame {
 		bbMymenu.setBackground(Color.white);
 		bbLogout=new JButton(iconLogout);
 		bbLogout.setBackground(Color.white);
+		Lblogo.setBounds(5, 5, 100, 100);
 				
 		pS.add(bbMypage);
 		pS.add(bbMenu);
 		pS.add(bbMymenu);
 		pS.add(bbLogout);
+		f.getContentPane().add(Lblogo); // 까페로고 패널 위 붙이기
 		
 		/**1.3 중심 화면*/
 		pC.setLayout(new GridLayout(3,1));

@@ -6,6 +6,7 @@ package subway;
  * 	작성일 7:26  
  */
 import java.awt.*;
+
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
@@ -114,7 +115,8 @@ public class MP04_Delete extends JFrame {
 					{
 						if (Gui03_JoinMembership.getCustomers().get(i).getId().equals(Gui01_Login.id)) 
 						{
-							Gui03_JoinMembership.getCustomers().remove(i);
+							Gui03_JoinMembership.getCustomers().remove(Gui03_JoinMembership.getCustomers().get(i));
+							//Gui03_JoinMembership.getCustomers().remove(Gui03_JoinMembership.getCustomers().get(i));
 						}
 					}
 					new Gui01_Login();

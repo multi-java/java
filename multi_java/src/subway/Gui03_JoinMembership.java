@@ -211,7 +211,7 @@ public class Gui03_JoinMembership extends JFrame {
          bJoin.addActionListener(handler);
          
          /**4-6)전체 프레임 f에 모든 패널을 배치. 크기설정, 시각화 구현 및 창닫기 처리*/
-         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          f.add(p);
          f.setVisible(true);
          f.setSize(500,700);
@@ -261,6 +261,11 @@ public class Gui03_JoinMembership extends JFrame {
                  
                  /** 위의 3가지 조건에 통과하면, 고객정보를 ArrayList인 customers에 저장하고 회원가입 완료
                   * - 회원가입을 완료하면 자동으로 로그인 화면으로 이동*/
+                 for (Customer customer : customers) {
+                     if (customer.getId().equals(id)) {
+                    	 
+                     }
+                     }
                  customers.add(new Customer(name, id, pwd, phone, iBirthDate));
                  JOptionPane.showMessageDialog(p,"회원가입을 축하합니다");
                  f.setVisible(false);

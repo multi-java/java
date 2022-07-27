@@ -89,7 +89,7 @@ public class Gui02_MainHome extends JFrame{
       bbLogout.addActionListener(handler);
       
       /**3-5)전체 프레임 f에 모든 패널을 배치. 크기설정, 시각화 구현 및 창닫기 처리*/
-      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       f.add(p);
       f.setVisible(true);
       f.setSize(500,700);
