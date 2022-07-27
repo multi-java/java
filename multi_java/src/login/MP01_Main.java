@@ -1,13 +1,17 @@
 package login;
+/**
+ * 	마이페이지 기본 화면
+ * 	작성자 정유진
+ * 	작성일 7:26 
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-
 public class MP01_Main extends JFrame {
 	JFrame f=new JFrame();
-	JPanel p,pC,pS;
+	JPanel p,pN,pC,pS;
 	JButton bbMypage, bbMenu, bbMymenu,bbLogout,sMember,cMember,dMember;
 	JLabel title;
 	Icon titleLogo;
@@ -19,6 +23,8 @@ public class MP01_Main extends JFrame {
 		return in;
 	}
 	
+	/** 1. 마이페이지 GUI 화면
+	 */
 	public MP01_Main() {
 		super(":: Toast House App v1.1 ");
 		
@@ -31,18 +37,24 @@ public class MP01_Main extends JFrame {
 		p.setBackground(Color.white);
 		p.add(pC=new JPanel(),"Center"); 
 		pC.setBackground(Color.white);
+		p.add(pN=new JPanel(),"North"); 
+		pN.setBackground(Color.white);
 		p.add(pS=new JPanel(),"South"); 
 		pS.setBackground(Color.white);
 		
+		/**1.1 마이페이지 타이틀*/
+		titleLogo=new ImageIcon("image/MyPage.jpg");
+		title=new JLabel(titleLogo);
+		pN.add(title);
 
 		
-		//하단 아이콘 양식 복사
+		/**1.2 하단 네비게이션바*/
 		pS.setLayout(new GridLayout(1,4));
 		
-		iconMymenu=new ImageIcon("lovemenu.png");
-		iconMenu=new ImageIcon("menu.png");
-		iconMypage=new ImageIcon("mypage.png");
-		iconLogout=new ImageIcon("logout.png");
+		iconMymenu=new ImageIcon("image/주문내역.jpg");
+		iconMenu=new ImageIcon("image/mv주문하기.jpg");
+		iconMypage=new ImageIcon("image/마이페이지.jpg");
+		iconLogout=new ImageIcon("image/로그아웃.jpg");
 		
 		bbMypage=new JButton(iconMypage );
 		bbMypage.setBackground(Color.white);
@@ -58,34 +70,25 @@ public class MP01_Main extends JFrame {
 		pS.add(bbMymenu);
 		pS.add(bbLogout);
 		
-		//중심 화면
-		pC.setLayout(new GridLayout(4,1));
-		
-		titleLogo=new ImageIcon("title.PNG");
-		title=new JLabel(titleLogo);
-		title.setBounds(75,30,350,100);
-		pC.add(title);
-		
-		sMember = new JButton("회원정보 조회");
-		sMember.setBounds(40,200,410,100);
-		cMember = new JButton("회원정보 수정");
-		cMember.setBounds(40,330,410,100);
-		dMember = new JButton("회원 탈퇴");
-		dMember.setBounds(40,460,410,100);
-		
-		pC.add(sMember);
-		pC.add(cMember);
-		pC.add(dMember);
-		//pC.getRootPane().add(sMember);
-		//pC.getRootPane().add(cMember);
-		//pC.getRootPane().add(dMember);
-		
+		/**1.3 중심 화면*/
+		pC.setLayout(new GridLayout(3,1));
 
-				
-			f.add(p);
-			f.setVisible(true);
-				
-			MyEventHandler handler = new MyEventHandler();
+		sMember = new JButton("회원정보 조회");
+		sMember.setFont(new Font("NanumGothic",Font.BOLD,35));
+		cMember = new JButton("회원정보 수정");
+		cMember.setFont(new Font("NanumGothic",Font.BOLD,35));
+		dMember = new JButton("회원 탈퇴");
+		dMember.setFont(new Font("NanumGothic",Font.BOLD,35));
+
+			pC.add(sMember);
+			pC.add(cMember);
+			pC.add(dMember);
+		
+		f.add(p);
+		f.setVisible(true);
+			
+		//버튼 활성화
+		MyEventHandler handler = new MyEventHandler();
 			sMember.addActionListener(handler);
 			cMember.addActionListener(handler);
 			dMember.addActionListener(handler);
@@ -105,11 +108,11 @@ public class MP01_Main extends JFrame {
 					
 					}else if(obj==cMember)
 					{
-						//new ShowCMember();	
+						 new MP03_Change();	
 						f.setVisible(false);
 					}else if(obj==dMember)
 					{ 
-						//new ShowDMember();	
+						new MP04_Delete();	
 						f.setVisible(false);
 					}else if(obj==bbLogout) {//로그아웃하고 로그인화면으로 이동
 						f.setVisible(false);
