@@ -1,18 +1,24 @@
 package login;
+/**
+ *	마이페이지 개인정보 조회 화면
+ *  작성자 정유진
+ *  작성일 7:26 
+ */
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+
 import javax.swing.*;
-
-
 
 public class MP02_Show extends JFrame {
 	JFrame f=new JFrame();
-	JPanel p,pC,pS;
+	JPanel p,pC,pS,pN;
 	JButton bbMypage, bbMenu, bbMymenu,bbLogout;
 	JLabel laId, laPwd,laName,laPhone, laBirthdate;
 	JLabel title;
 	Icon titleLogo;
 	Icon iconMenu, iconMymenu,iconMypage, iconLogout;
+	
 	
 	@Override
 	public Insets getInsets () { 
@@ -20,6 +26,7 @@ public class MP02_Show extends JFrame {
 		return in;
 	}
 	
+	/**1. 정보 조회 화면 GUI*/
 	public MP02_Show() {
 		super(":: Toast House App v1.1 ");
 		
@@ -31,18 +38,24 @@ public class MP02_Show extends JFrame {
 		p.setBackground(Color.white);
 		p.add(pC=new JPanel(),"Center"); 
 		pC.setBackground(Color.white);
+		p.add(pN=new JPanel(),"North"); 
+		pN.setBackground(Color.white);
 		p.add(pS=new JPanel(),"South"); 
 		pS.setBackground(Color.white);
 		
+		/**1.1 마이페이지 타이틀*/
+		titleLogo=new ImageIcon("image/MyPage.jpg");
+		title=new JLabel(titleLogo);
+		pN.add(title);
 
 		
-		//하단 아이콘 양식 복사
+		/**1.2 하단 네비게이션바*/
 		pS.setLayout(new GridLayout(1,4));
 		
-		iconMymenu=new ImageIcon("lovemenu.png");
-		iconMenu=new ImageIcon("menu.png");
-		iconMypage=new ImageIcon("mypage.png");
-		iconLogout=new ImageIcon("logout.png");
+		iconMymenu=new ImageIcon("주문내역.jpg");
+		iconMenu=new ImageIcon("mv주문하기.jpg");
+		iconMypage=new ImageIcon("마이페이지.jpg");
+		iconLogout=new ImageIcon("로그아웃.jpg");
 		
 		bbMypage=new JButton(iconMypage );
 		bbMypage.setBackground(Color.white);
@@ -58,39 +71,56 @@ public class MP02_Show extends JFrame {
 		pS.add(bbMymenu);
 		pS.add(bbLogout);
 		
-		//중심 화면
+		//1.3 중심 화면
 		pC.setLayout(new GridLayout(6,1));
-		titleLogo=new ImageIcon("title.PNG");
-		title=new JLabel(titleLogo);
-		title.setBounds(75,30,350,100);
-		pC.add(title);
 		
-		laId=new JLabel("아이디 :  "+	Gui03_JoinMembership.getCustomers().get(0).getId());
-		laId.setFont(new Font("sans-serif",Font.BOLD,24));
-		//laId.setBounds(30, 180, 300, 50);
-		laPwd=new JLabel("패스워드 :  "+	Gui03_JoinMembership.getCustomers().get(0).getPassword());
-		laPwd.setFont(new Font("sans-serif",Font.BOLD,24));
-		//laId.setBounds(30, 180, 300, 50);
-		laName=new JLabel("이름 :  "+ Gui03_JoinMembership.getCustomers().get(0).getName());
-		laName.setFont(new Font("sans-serif",Font.BOLD,24));
-		//laName.setBounds(30, 260, 300, 50);
-		laBirthdate=new JLabel("생년월일 :  "+ Gui03_JoinMembership.getCustomers().get(0).getBirthdate());
-		laBirthdate.setFont(new Font("sans-serif",Font.BOLD,24));
-		//laBirthdate.setBounds(30, 340, 300, 50);
-		laPhone=new JLabel("연락처 :  "+Gui03_JoinMembership.getCustomers().get(0).getPhone());
-		laPhone.setFont(new Font("sans-serif",Font.BOLD,24));
-		//laPhone.setBounds(30, 420, 300, 50);
+		/**
+		 *  2. 회원 정보 출력
+		 *  회원가입 시 배열에 저장된 개인 정보를
+		 *  로그인 시 입력한 아이디를 통해 배열에서 꺼내와 출력
+		 */
+		String a="";
+		String b="";
+		int c=0;
+		String d="";
+		int i=0;
+		
+		/**
+		 * 2.1 로그인한 아이디와 일치하는 정보를 가진 배열을 탐색하는 for루프
+		 */
+		for(;i<Gui03_JoinMembership.getCustomers().size();i++) {
+			if(Gui03_JoinMembership.getCustomers().get(i).getId().equals(Gui01_Login.id))
+			{
+				a=Gui03_JoinMembership.getCustomers().get(i).getPassword();
+				b=Gui03_JoinMembership.getCustomers().get(i).getName();
+				c=Gui03_JoinMembership.getCustomers().get(i).getBirthdate();
+				d=Gui03_JoinMembership.getCustomers().get(i).getPhone();
+			}
+		}
+			
+		//고객 정보 출력
+			laId=new JLabel("아이디 :  "+Gui01_Login.id);
+			laId.setFont(new Font("sans-serif",Font.BOLD,24));
+			laPwd=new JLabel("패스워드 :  "+a);
+			laPwd.setFont(new Font("sans-serif",Font.BOLD,24));
+			laName=new JLabel("이름 :  "+b);
+			laName.setFont(new Font("sans-serif",Font.BOLD,24));
+			laBirthdate=new JLabel("생년월일 :  "+c);
+			laBirthdate.setFont(new Font("sans-serif",Font.BOLD,24));
+
+			laPhone=new JLabel("연락처 :  "+d);
+			laPhone.setFont(new Font("sans-serif",Font.BOLD,24));
 
 		pC.add(laId);
 		pC.add(laPwd);
 		pC.add(laName);
 		pC.add(laBirthdate);
 		pC.add(laPhone);
-		
-				
+	
 			f.add(p);
 			f.setVisible(true);
 				
+			//버튼 활성화
 			MyEventHandler handler = new MyEventHandler();
 
 			bbMypage.addActionListener(handler);
@@ -119,4 +149,5 @@ public class MP02_Show extends JFrame {
 			}
 
 	}
-}
+	}
+
