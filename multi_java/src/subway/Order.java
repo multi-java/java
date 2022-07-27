@@ -11,8 +11,10 @@ public class Order extends JFrame
 {
 	JFrame f = new JFrame();
 	JTextArea ta;
-	JButton btMain,btSave;
+	JButton btMain,btSave,btmypage,btShopping,btbookmark,btlogout;
 	JScrollPane scrollPane;
+	JLabel Lblogo,Lbname,Lbline, Lbline2, Lbcheck;
+	
 	
 	/**ArrayList를 문자열로 가져오는 과정에서 생기는 불필요한 문자들을 제거*/
 	
@@ -29,15 +31,19 @@ public class Order extends JFrame
 		
 		
 		btMain = new JButton("메인페이지");
-		btSave = new JButton("저장");
+		btSave = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\영수증출력.jpg"));
+		Lbcheck = new JLabel("주문하신 전체내역은 <주문내역>에서도 확인할 수 있습니다");
 		ta=new JTextArea();
+		
 		scrollPane = new JScrollPane();
         scrollPane.getViewport().add(ta);
 		
         
 		btMain.setBounds(330, 30, 100, 50);
-		btSave.setBounds(330, 150, 100, 50);
-		scrollPane.setBounds(10, 30, 200, 300);
+		btSave.setBounds(150, 450, 200, 30);
+		scrollPane.setBounds(150, 170, 200, 230);
+		Lbcheck.setBounds(80, 410, 400, 30);
+		
 		
 		ta.append(orderList+"총 결제 금액 : "+ShowMainPage.getTotal_price());/**TextArea에 출력할 내용 저장*/
 		count++;
@@ -45,6 +51,7 @@ public class Order extends JFrame
 		
 		f.getContentPane().add(btMain);
 		f.getContentPane().add(btSave);
+		f.getContentPane().add(Lbcheck);
 		f.getContentPane().add(scrollPane);
 		f.getContentPane().setBackground(Color.WHITE);
 	    ta.setEditable(false);						/**Textarea에 값 입력 못하게 설정*/
@@ -54,7 +61,57 @@ public class Order extends JFrame
 		MyEventHandler handler = new MyEventHandler();
 		btMain.addActionListener(handler);
 		btSave.addActionListener(handler);
-	}
+	
+	
+	//이동버튼 관련
+	
+    btmypage = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\마이페이지.jpg"));
+    btShopping = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\mv주문하기.jpg"));
+    btbookmark = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\즐겨찾기.jpg"));
+    btlogout = new JButton("",new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\로그아웃.jpg"));
+    
+    btmypage.setBounds(0, 570, 125, 100); //x, y, 가로, 세로
+    btShopping.setBounds(125,570,125,100);
+    btbookmark.setBounds(250, 570, 125, 100); //x, y, 가로, 세로
+    btlogout.setBounds(375, 570, 125, 100); //x, y, 가로, 세로
+    
+    f.getContentPane().add(btmypage);   
+    f.getContentPane().add(btShopping);
+    f.getContentPane().add(btbookmark);   
+    f.getContentPane().add(btlogout);   
+    
+    btmypage.setBackground(Color.white);
+    btmypage.setBorderPainted(false);
+    btShopping.setBackground(Color.white);
+    btShopping.setBorderPainted(false);
+    btbookmark.setBackground(Color.white);
+    btbookmark.setBorderPainted(false);
+    btlogout.setBackground(Color.white);
+    btlogout.setBorderPainted(false);
+    
+    
+    //제목라벨 관련
+    
+    Lblogo = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\까페로고.jpg")); //메뉴선택 라벨 생성
+    Lbname = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\주문내역.jpg")); //메뉴선택 라벨 생성
+    Lbline = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\선.png")); //메뉴선택 라벨 생성
+    Lbline2 = new JLabel(new ImageIcon("C:\\Users\\하은\\git\\java\\multi_java\\Image\\선.png")); //메뉴선택 라벨 생성
+    
+    
+    Lblogo.setBounds(5, 5, 100, 100); // x, y, 가로, 세로
+    Lbname.setBounds(170, 10, 150, 100); // x, y, 가로, 세로
+    Lbline.setBounds(0, 100, 500, 50); // x, y, 가로, 세로
+    Lbline2.setBounds(0, 480, 500, 50); // x, y, 가로, 세로
+    
+    f.getContentPane().add(Lbline);     
+    f.getContentPane().add(Lbline2); 
+    f.getContentPane().add(Lbname);      
+    f.getContentPane().add(Lblogo);
+    f.getContentPane().setBackground(Color.white);
+}
+
+	
+	
 	class MyEventHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
