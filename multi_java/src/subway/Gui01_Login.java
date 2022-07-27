@@ -6,7 +6,7 @@ import java.awt.event.*;
 
 
 /** 
- * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션  
+ * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션   
  * 
  * 로그인 화면: 앱의 첫 화면
  * 
@@ -29,10 +29,11 @@ public class Gui01_Login  extends JFrame {
 	JFrame f = new JFrame();
 	JPanel p,pN,pC;
 	JButton bLogin, bJoin;
-	JTextField textId, textPwd;
+	static JTextField textId, textPwd;
 	JLabel laId, laPwd;
 	JLabel laIcon;
 	Icon iconLogo;
+	static String id;
 	
 	/**2. 프레임에 여백을 주는 메서드*/
 	@Override

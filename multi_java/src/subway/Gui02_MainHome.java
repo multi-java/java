@@ -1,6 +1,6 @@
 package subway;
 /** 
- * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션  
+ * 다양한 선택이 가능한 소비자 중심의 토스트 판매 애플리케이션   
  * 
  * 메인화면 : 로그인 후 네비게이션바 버튼을 통해 다른 기능으로 이동할 수 있는 화면
  * 
@@ -20,7 +20,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-/**1.메인홈 화면에 대한 클래스*/
+/**1.메인 화면에 대한 클래스*/
 public class Gui02_MainHome extends JFrame{
 	JFrame f = new JFrame(":: Cafe7 App v1.1 ");
 	JPanel p,pS,pC; 
